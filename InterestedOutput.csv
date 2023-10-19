@@ -1,0 +1,13 @@
+ID,Adj.P.Val,P.Value,t,B,logFC,Gene.Symbol,Gene.Title
+217163_at,0.997,0.996,0.0052,-6.859479,0.00028,ESR1,estrogen receptor 1
+205707_at,0.998,0.998,-0.00287,-6.859488,-0.000287,IL17RA,interleukin 17 receptor A
+209811_at,0.995,0.992,-0.00947,-6.859448,-0.0009,CASP2,caspase 2
+203304_at,0.996,0.995,0.00618,-6.859473,0.00125,BAMBI,BMP and activin membrane bound inhibitor
+205544_s_at,0.998,0.997,-0.00382,-6.859485,-0.000601,CR2,complement component 3d receptor 2
+212780_at,0.994,0.991,-0.0113,-6.859429,-0.000778,SOS1,SOS Ras/Rac guanine nucleotide exchange factor 1
+208023_at,0.994,0.992,-0.0106,-6.859436,-0.000674,TNFRSF4,TNF receptor superfamily member 4
+206812_at,0.994,0.992,0.0105,-6.859438,0.000589,ADRB3,adrenoceptor beta 3
+216914_at,0.995,0.994,-0.00805,-6.85946,-0.000562,CDC25C,cell division cycle 25C
+203108_at,0.994,0.992,-0.0106,-6.859436,-0.00264,GPRC5A,G protein-coupled receptor class C group 5 member A
+204971_at,0.994,0.992,0.0103,-6.85944,0.00272,CSTA,cystatin A
+242625_at,0.994,0.992,-0.0104,-6.859439,-0.00349,RSAD2,radical S-adenosyl methionine domain containing 2
