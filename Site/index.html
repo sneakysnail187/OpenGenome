@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Genome</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
   </head>
   <body class = "dark-theme">
     <h1>Open Genome</h1>
@@ -19,6 +21,15 @@
     </ul>
     <div>
         <button class = "btn">Dark</button>
+    </div>
+    <div>
+      <input type="file" id = "csvFile" name = "csvFile" accept=".csv">
+    </div>
+    <div class = "preview">
+      <p>No file selected</p>
+    </div>
+    <div>
+      <button>Submit</button>
     </div>
     <script src="app.js"></script>
     <noscript>You need to enable JavaScript to view the full site. </noscript>
