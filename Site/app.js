@@ -7,6 +7,21 @@ input.style.opacity = 0;
 
 input.addEventListener("change", processData, false);
 
+switcher.addEventListener('click', function(){
+    document.body.classList.toggle('light-theme');
+    document.body.classList.toggle('dark-theme');
+
+    const className = document.body.className;
+    if(className == "light-theme") {
+        this.textContent ="Dark";
+    }
+    else{
+        this.textContent = "Light";
+    }
+    
+    console.log('current class name: ' + className);
+});
+
 function processData(){
     while (preview.firstChild) {
         preview.removeChild(preview.firstChild);
@@ -44,18 +59,3 @@ function processData(){
         }
     }
 }
-
-switcher.addEventListener('click', function(){
-    document.body.classList.toggle('light-theme');
-    document.body.classList.toggle('dark-theme');
-
-    const className = document.body.className;
-    if(className == "light-theme") {
-        this.textContent ="Dark";
-    }
-    else{
-        this.textContent = "Light";
-    }
-    
-    console.log('current class name: ' + className);
-});
