@@ -12,7 +12,7 @@ logFCs = []
 GeneSymbols = []
 GeneTitles = []
 GeneIDs = []
-with open(r"C:\\Users\\maduv\\OneDrive\\Documents\\OpenGenome\Data from GEO2R - One Experimental Group.csv", newline='') as cfile: ##replace filepath
+with open(r"Data from GEO2R - One Experimental Group.csv", newline='') as cfile: ##replace filepath
     genomedata = csv.DictReader(cfile)
     for row in genomedata:
         if (row['Gene.symbol']!=""):
