@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenGenome</title>
-    <link rel="stylesheet" href="css/style.css">
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'FinalSite/build/css/style.css' %}">
 </head>
 <body class ="min-h-screen bg-slate-50 dark:bg-black dark:text-teal-700">
     <header class="bg-teal-300 text-white sticky dark:bg-teal-700 top-0 z-10">
@@ -49,7 +50,7 @@
                     Our goals are to improve discusison and participation in bioinformatic research.
                 </p>
             </article>
-            <img class="w-1/2 sm:w-1/3" src="./img/OpenGenome-logos_transparent.png" alt = "OpenGenome Logo">
+            <img class="w-1/2 sm:w-1/3" src=" {%static 'FinalSite/build/img/OpenGenome-logos_transparent.png' %}" alt = "OpenGenome Logo">
         </section>
     </main>
 </body> 
