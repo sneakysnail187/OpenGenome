@@ -26,18 +26,18 @@ li {
     --bg: var(--green);
     --fontColor: var(--black);
     --btnBg: var(--black);
-    --btnFontColor: var(--white);
+    --btnFontColor: var(--green);
   }
   .dark-theme {
     --bg: var(--black);
     --fontColor: var(--green);
-    --btnBg: var(--white);
+    --btnBg: var(--green);
     --btnFontColor: var(--black);
   }
   .btn{
     position: absolute;
-    top: 20px;
-    left: 250px;
+    top: 225px;
+    right: 50px;
      height: 50px;
      width: 50px;
     border-radius: 50%;
