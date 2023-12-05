@@ -37,27 +37,34 @@
             <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
                 Upload Your Data
             </h2>
-            <div class="flex justify-center mt-8 ml-40" id="fileInput">
-                <input type="file" id="csvFile" name="csvFile" accept=".csv"></input>
+            <div class="flex justify-center mt-8 ml-40">
+                <input type="file" id="fileInput" name="csvFile" accept=".csv"></input>
             </div>
             <div class="flex justify-center mt-8">
                 <a id="verifyButton" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
-                Verify CSV File
+                    Verify CSV File
+                </a>
+                <a id="openAnalysisButton" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded" hidden>
+                    Open Analysis
                 </a>
             </div>
             
             <script>
                 const button = document.getElementById('verifyButton');
+                const button2 = document.getElementById('openAnalysisButton');
 
-                // Get the input field element
-                const inputField = document.getElementById('fileInput');
+                var file;
+                document.getElementById('fileInput').addEventListener('change', function(event) {
+                    file = event.target.files[0]; // Get the selected file
+                });
 
                 // Add a click event listener to the button
                 button.addEventListener('click', function() {
                     // Check if the input field is empty
-                    if (inputField.value !== '') {
-                        // Hide the button
+                    if (file != null) {
+                        
                         button.style.display = 'none';
+                        button2.style.display = 'block';
                     }
                 });
                 
