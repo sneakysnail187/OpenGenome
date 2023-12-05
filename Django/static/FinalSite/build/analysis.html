@@ -77,10 +77,33 @@
         
             <py-script>
             from pyscript import Element
-            print("Hello World")
             async def main():
-                input_str = Element("fileInput").value
-                print(input_str)
+                input_element = Element("fileInput")
+                input_file = input_element.element.files[0]
+                IDList = []
+                AdjP = []
+                PList = []
+                tValues = []
+                BValues = []
+                logFCs = []
+                GeneSymbols = []
+                GeneTitles = []
+                GeneIDs = []
+                print("Works")
+                genomedata = csv.DictReader(input_file)
+                print("Works!!")
+                for row in genomedata:
+                    print("Works!")
+                if (row['Gene.symbol']!=""):
+                    IDList.append(row['ID'])
+                    AdjP.append(float(row['adj.P.Val']))
+                    PList.append(float(row['P.Value']))
+                    tValues.append(float(row['t']))
+                    BValues.append(float(row['B']))
+                    logFCs.append(float(row['logFC']))
+                    GeneSymbols.append(row['Gene.symbol'])
+                    GeneTitles.append(row['Gene.title'])
+                    GeneIDs.append(row['Gene.ID'])
             </py-script>
 
 
