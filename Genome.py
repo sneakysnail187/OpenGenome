@@ -30,6 +30,9 @@ sortedtabledata = []
 savefigpath = ""
 savefigpath2 = ""
 savefigpath3 = ""
+filepath = ""
+filepath2 = ""
+filepath3 = ""
 
 def initArrays():
     IDList = []
@@ -41,7 +44,7 @@ def initArrays():
     GeneSymbols = []
     GeneTitles = []
     GeneIDs = []
-    with open(r"Data from GEO2R - One Experimental Group.csv", newline='') as cfile: ##replace filepath
+    with open(filepath, newline='') as cfile: ##replace filepath
         genomedata = csv.DictReader(cfile)
         for row in genomedata:
             if (row['Gene.symbol']!=""):
@@ -122,12 +125,12 @@ def writeSortedTableData():
                 break
     sortedtabledata.insert(0,['ID','logFC','Gene.Symbol','Gene.Title'])
 
-    with open('Downloads/output.csv','w', newline='') as f:
+    with open(filepath,'w', newline='') as f:
         writer=csv.writer(f)
         writer.writerows(sortedtabledata)
     
-def writeSortedDataAsCSV(filepathwrite):
-    with open('Downloads/output_with_shortened_list.csv', newline='') as o:
+def initShortened():
+    with open(filepath2, newline='') as o:
         interestgenes = csv.DictReader(o)
         SortedIDs = []
         SortedGenes = []
@@ -159,7 +162,7 @@ def plotCompleteInterestSet():
     plt.savefig(savefigpath3)
     completeinterestset.insert(0,["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"])
 
-def writeCompleteInterestSetCSV(filepathwrite):
-    with open('Downloads/InterestedOutput.csv','w', newline='') as fo:
+def writeCompleteInterestSetCSV():
+    with open(filepath3,'w', newline='') as fo:
         writer=csv.writer(fo)
         writer.writerows(completeinterestset)
