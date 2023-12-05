@@ -40,8 +40,12 @@
             <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
                 Upload Your Data
             </h2>
-            <div class="flex justify-center mt-8 ml-40">
-                <input type="file" id="fileInput" name="csvFile" accept=".csv"></input>
+            
+            <div>
+            <form>
+                <div class="mb-4">
+                    <input id="fileInput" type="file" class="justify-center border-2 border-gray-300 p-2 my-8 w-full rounded-2xl" name="csvFile" id="csvFile">
+            </form>
             </div>
             <div class="flex justify-center mt-8">
                 <a id="verifyButton" py-click="main()" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
@@ -73,40 +77,7 @@
                 });
                 
             </script>
-
-        
-            <py-script>
-            from pyscript import Element
-            async def main():
-                input_element = Element("fileInput")
-                input_file = input_element.element.files[0]
-                IDList = []
-                AdjP = []
-                PList = []
-                tValues = []
-                BValues = []
-                logFCs = []
-                GeneSymbols = []
-                GeneTitles = []
-                GeneIDs = []
-                print("Works")
-                genomedata = csv.DictReader(input_file)
-                print("Works!!")
-                for row in genomedata:
-                    print("Works!")
-                if (row['Gene.symbol']!=""):
-                    IDList.append(row['ID'])
-                    AdjP.append(float(row['adj.P.Val']))
-                    PList.append(float(row['P.Value']))
-                    tValues.append(float(row['t']))
-                    BValues.append(float(row['B']))
-                    logFCs.append(float(row['logFC']))
-                    GeneSymbols.append(row['Gene.symbol'])
-                    GeneTitles.append(row['Gene.title'])
-                    GeneIDs.append(row['Gene.ID'])
-            </py-script>
-
-
+            
         </section>
 
         <hr class="mx-auto bg-black dark:bg-white w-1/2">
