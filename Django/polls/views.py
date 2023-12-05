@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+#functions for rendering the individual html pages 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index")
+    return render(request, 'index.html')
 
-# Create your views here.
+def about(request):
+    return render(request, 'about.html')
