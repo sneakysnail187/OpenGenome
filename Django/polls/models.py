@@ -5,6 +5,8 @@ class Result(models.Model):
     experimentTitle = models.CharField(max_length = 200,null = False, blank = False)
     targetGenes = models.CharField(max_length = 200,null = False, blank = False)
     experimentNotes = models.TextField()
+    csvFile = models.FileField(upload_to = 'uploads', blank = True, null = True)
+    plot = models.ImageField(upload_to = 'uploads', blank = True, null = True)
     def __str__(self):
         return self.experimentTitle
 
@@ -20,6 +22,10 @@ class Comment(models.Model):
         ordering = ['created_on']
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.name)
- 
+
+
 class Plots(models.Model):
     plot = models.ImageField()
+
+class UserCSV(models.Model):
+    csv = models.FileField(upload_to = 'SubmittedCSV', blank = True, null = True)
