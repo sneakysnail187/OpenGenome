@@ -30,7 +30,6 @@ sortedtabledata = []
 savefigpath = ""
 savefigpath2 = ""
 savefigpath3 = ""
-savefigpath4 = ""
 
 def initArrays():
     IDList = []
@@ -72,7 +71,7 @@ def plotFilteredArrays():
     plt.bar(FilteredIDs, FlogFCs, width = 0.4)
     plt.xlabel("ID")
     plt.ylabel("logFC")
-    plt.savefig(savefigpath4)
+    plt.savefig(savefigpath)
 
 def printTableData():
     tabledata = []
