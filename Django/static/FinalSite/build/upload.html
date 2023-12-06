@@ -105,12 +105,12 @@
             <script>
                 var selectedFile;
                 var dropdown = document.getElementById('fileSelect');
-                var selectedFile;
+                var selectedFile=dropdown.options[dropdown.selectedIndex].value;
                 function openAnalysis() {
-                    window.open("analytics.html");
-                    if (selectedFile.options.selectedIndex != 1) {
-                        // selectedFile = dropdown.options[dropdown.selectedIndex].value; save selected file to local storage if not the default
+                    if (selectedFile.options.selectedIndex != 0) {
+                        selectedFile = dropdown.options[dropdown.selectedIndex].value; save selected file to local storage if not the default
                         localStorage.setItem("selectedFile", selectedFile);
+                        window.open("analytics.html");
                     }
                 }
             </script>
