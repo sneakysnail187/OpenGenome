@@ -74,14 +74,14 @@
 
                 <div class="flex justify-center mt-8">
                     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
-                    <select data-te-select-init name="files" method="GET">
-                        {% for file in files %}
-                        <option value = "{{file}}" SELECTED>{{file}}</option>
+                    <select name ="fileName" id = "name" >
+                        {% for name in names %}
+                        <option value = "{{name}}">{{name}}</option>
                         {% endfor %}
-<option value="1">No files available</option>
+                        <option value="1">No files available</option>
                         <option value="2">Please press refresh button</option>
                     </select>
-                    </form>
+
                 </div>
 
                 <div class="text-center mt-6">

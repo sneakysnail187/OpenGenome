@@ -33,10 +33,10 @@ def upload(request):
         #g.submittedCSVFileNames.append(new_result.csvFile.name)
         #files = g.submittedCSVFileNames
         new_csv_name = CSVNames(csvName = input_csv.name)
-    fileNames = list(CSVNames.objects.all().distinct())
+    fileNames = CSVNames.objects.all().distinct()
     for name in fileNames:
         print(name)
-    context = {"name" : fileNames}
+    context = {"names" : fileNames}
 
     return render(request, 'upload.html', context)
 
