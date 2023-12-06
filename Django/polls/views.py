@@ -24,11 +24,13 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
+submittedCSVFileNames = []
 def analysis(request):
     if request.method == 'POST':
         input_csv = request.FILES['csvFile']
         new_csv = UserCSV(csv = input_csv)
         new_csv.save()
+        submittedCsvNames.append(new_result.csvFile.name)
 
     return render(request, 'analysis.html')
 
