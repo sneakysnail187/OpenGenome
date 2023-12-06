@@ -144,7 +144,7 @@
                 FGeneSymbols = []
                 FGeneTitles = []
                 for p in range(len(PList)):
-                     if (PList[p]>0.99):
+                     if (PList[p]>0.99): #maybe make this editable? setting statistical threshold
                         FilteredIDs.append(IDList[p])
                         FlogFCs.append(logFCs[p])
                         FGeneSymbols.append(GeneSymbols[p])
@@ -173,7 +173,7 @@
                 plt.ylabel("logFC")
                 plt.savefig(savefigpath2)
 
-            async def shortCSV(): #this should be reserved for filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
+            async def shortCSV(): #this should be reserved for user filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
                 df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
                 SortedIDs = []
                 SortedGenes = []
