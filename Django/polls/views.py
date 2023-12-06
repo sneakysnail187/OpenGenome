@@ -28,6 +28,8 @@ def analysis(request):
     if request.method == 'POST':
         input_csv = request.FILES['csvFile']
         new_csv = UserCSV(csv = input_csv)
+        new_csv.save()
+
     return render(request, 'analysis.html')
 #results needs to pull from db, where postpage uploads to db
 #

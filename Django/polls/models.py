@@ -28,4 +28,4 @@ class Plots(models.Model):
     plot = models.ImageField()
 
 class UserCSV(models.Model):
-    csv = models.FileField(upload_to = 'SubmittedCSV', blank = True, null = True)
+    csv = models.FileField(upload_to = 'uploads', blank = True, null = True)

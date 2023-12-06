@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Result, Comment
+from .models import Result, Comment, UserCSV
 
 admin.site.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('name', 'comment')
 
 admin.site.register(Result)
+admin.site.register(UserCSV)
