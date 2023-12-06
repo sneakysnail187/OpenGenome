@@ -172,6 +172,7 @@
                 plt.xticks(fontsize=5)
                 plt.xlabel("ID")
                 plt.ylabel("logFC")
+                plt.show()
                 plt.savefig(savefigpath2)
 
             async def shortCSV(): #this should be reserved for user filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
@@ -204,6 +205,7 @@
                 plt.xlabel("Gene.Symbol")
                 plt.xticks(fontsize=8)
                 plt.ylabel("logFC")
+                plt.show()
                 plt.savefig(savefigpath3)
                 interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
                 print(tabulate(completeinterestset, headers=interesthead))
