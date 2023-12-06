@@ -99,7 +99,7 @@
                     <button href="postpage.html" type="makePost" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
                         Make a Post
                     </button>
-            </div>
+                </div>
             </section>
 
             <script>
@@ -107,9 +107,9 @@
                 var dropdown = document.getElementById('fileSelect');
                 var selectedFile;
                 function openAnalysis() {
-                    selectedFile = dropdown.options[dropdown.selectedIndex].value;
                     window.open("analytics.html");
-                    if (selectedFile.options.length > 1) {
+                    if (selectedFile.options.selectedIndex != 1) {
+                        // selectedFile = dropdown.options[dropdown.selectedIndex].value; save selected file to local storage if not the default
                         localStorage.setItem("selectedFile", selectedFile);
                     }
                 }
@@ -149,9 +149,6 @@
                 savefigpath = "PFilteredLogFC.png"
                 savefigpath2 = "LargestLogFCs.png"
                 savefigpath3 = "InterestLogFCs.png"
-
-                async def openAnalysis():
-                    openAnalytics()
 
                 async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path, where to save figs?
                     df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath

@@ -30,11 +30,11 @@
                         &#9776;
                     </button>
                     <nav class="hidden sm:block space-x-8 text-xl" aria-labels="main">
-                        <a href="#upload" class="hover:opacity-90">
-                            Upload Data
+                        <a href="#userData" class="hover:opacity-90">
+                            Your Data
                         </a>
-                        <a href ="#analysis" class="hover:opacity-90">
-                            Analysis
+                        <a href ="#plotting" class="hover:opacity-90">
+                            Plotting
                         </a>
                         <a href="index.html" class="hover:opacity-90">
                             Home
@@ -46,15 +46,26 @@
 
         <main class="max-w-4xl mx-auto">
             
-            <section id="upload" class="p-6 my-4 pt-10">
+            <section id="userData" class="p-6 my-4 pt-10">
 
                 <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-                    Upload Your Data
+                    Your Data
                 </h2>
                 
                 <form>
+                    <div class="mb-4 px-20 text-center">
+                        <label class="text-3xl">Your Data</label><br />
+                        <span id="data" class="text-white dark:text-slate-100">Your CSV</span>
+                    </div>
                     <div class="mb-4 px-20">
-                        <input id="fileInput" type="file" class="justify-center border-2 border-gray-300 p-2 my-4 w-full rounded-2xl" name="csvFile" id="csvFile">
+                        <label class="text-xl">Your Target Genes</label><br />
+                        <input
+                        type="text"
+                        class="border-2 border-gray-300 p-2 w-full"
+                        name="targetGenes"
+                        id="targetGenes"
+                        placeholder="[Gene1, Gene2, Gene3, ...]"
+                        />
                     </div>
                     <div class="flex justify-center mt-8">
                         <button id="verifyButton" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
@@ -65,18 +76,56 @@
             </section>
 
             <hr class="mx-auto bg-black dark:bg-white w-1/2">
-
-            <section id="analysis" class="p-6 my-4 pt-10">
+            
+            <section id="plotting" class="p-6 my-4 pt-10">
                 <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-                    Analyze Your Data
+                    Plot Your Data
                 </h2>
 
-                <div class="flex justify-center mt-8">
-                    <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
-                    <select data-te-select-init>
-                        <option value="1">No files available</option>
-                        <option value="2">Please press refresh button</option>
-                    </select>
+                <div class="flex justify-center mt-8 px-24">
+                    <div class="relative flex flex-nowrap items-stretch">
+                        <span
+                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                            id="addon-wrapping"
+                            >Target Genes</span
+                        >
+                        <input
+                            type="text"
+                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                            placeholder="[Gene1, Gene2, Gene3, ...]"
+                            aria-label="Username"
+                            aria-describedby="addon-wrapping" />
+                    </div>
+                </div>
+                <div class="flex justify-center mt-1 px-24">
+                    <div class="relative flex flex-nowrap items-stretch">
+                        <span
+                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                            id="addon-wrapping"
+                            >Input Param 2</span
+                        >
+                        <input
+                            type="text"
+                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                            placeholder="[Input Param 2 goes here]"
+                            aria-label="Param2"
+                            aria-describedby="addon-wrapping" />
+                    </div>
+                </div>
+                <div class="flex justify-center mt-1 px-24">
+                    <div class="relative flex flex-nowrap items-stretch">
+                        <span
+                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                            id="addon-wrapping"
+                            >Input Param 3</span
+                        >
+                        <input
+                            type="text"
+                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                            placeholder="[Input Param3 goes here]]"
+                            aria-label="Param3"
+                            aria-describedby="addon-wrapping" />
+                    </div>
                 </div>
 
                 <div class="text-center mt-6">
@@ -103,148 +152,6 @@
             </div>
             </section>
 
-            <py-script hidden>
-                from pyscript import Element
-                import pandas as pd
-                import csv
-                from tabulate import tabulate
-                IDList = []
-                AdjP = []
-                PList = []
-                tValues = []
-                BValues = []
-                logFCs = []
-                GeneSymbols = []
-                GeneTitles = []
-                GeneIDs = []
-                FilteredIDs = []
-                FlogFCs = []
-                FGeneSymbols = []
-                FGeneTitles = []
-                tabledata = []
-                SortedIDs = []
-                SortedGenes = []
-                SortedTitles = []
-                logssorted = []
-                completeinterestset = []
-                FAdjP = []
-                FPList = []
-                FtValues = []
-                FBValues = []
-                sortedtabledata = []
-                savefigpath = "PFilteredLogFC.png"
-                savefigpath2 = "LargestLogFCs.png"
-                savefigpath3 = "InterestLogFCs.png"
-                async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path, where to save figs?
-                    df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
-                    IDList = []
-                    AdjP = []
-                    PList = []
-                    tValues = []
-                    BValues = []
-                    logFCs = []
-                    GeneSymbols = []
-                    GeneTitles = []
-                    GeneIDs = []
-                    IDList = df['ID'].tolist()
-                    AdjP = df['adj.P.Val'].tolist()
-                    PList = df['P.Value'].tolist()
-                    tValues = df['t'].tolist()
-                    BValues = df['B'].tolist()
-                    logFCs = df['logFC'].tolist()
-                    GeneSymbols = df['Gene.symbol'].tolist()
-                    GeneTitles = df['Gene.title'].tolist()
-                    GeneIDs = df['Gene.ID'].tolist()
-                    FilteredIDs = []
-                    FlogFCs = []
-                    FGeneSymbols = []
-                    FGeneTitles = []
-                    for p in range(len(PList)):
-                        if (PList[p]>0.99): #maybe make this editable? setting statistical threshold
-                            FilteredIDs.append(IDList[p])
-                            FlogFCs.append(logFCs[p])
-                            FGeneSymbols.append(GeneSymbols[p])
-                            FGeneTitles.append(GeneTitles[p])
-                    plt.bar(FilteredIDs, FlogFCs, width = 0.4)
-                    plt.xlabel("ID")
-                    plt.ylabel("logFC")
-                    plt.show()
-                    plt.savefig(savefigpath)
-                    tabledata = []
-                    for i in range(len(FilteredIDs)):
-                        tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
-                    head = ["ID","logFC","Gene Symbols","Gene Titles"]
-                    print(tabulate(tabledata, headers=head))
-                    logssorted = sorted(FlogFCs)[:5]+sorted(FlogFCs)[-5:]
-                    SortedIDs = []
-                    for i in range(len(logssorted)):
-                        for j in range(len(tabledata)):
-                            if((tabledata[j][1])==(logssorted[i])):
-                                print(tabledata[j][0],"added")
-                                SortedIDs.append(tabledata[j][0])
-                                break
-                    plt.bar(SortedIDs,logssorted)
-                    plt.title("Genomes with largest magnitude logFC values")
-                    plt.xticks(fontsize=5)
-                    plt.xlabel("ID")
-                    plt.ylabel("logFC")
-                    plt.show()
-                    plt.savefig(savefigpath2)
-
-                async def shortCSV(): #this should be reserved for user filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
-                    df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
-                    SortedIDs = []
-                    SortedGenes = []
-                    SortedTitles = []
-                    logssorted = []
-                    SortedIDs = df["ID"].tolist()
-                    SortedGenes = df["Gene.Symbol"].tolist()
-                    SortedTitles = df["Gene.Title"].tolist()
-                    logssorted = df["logFC"].tolist()
-                    FAdjP = []
-                    FPList = []
-                    FtValues = []
-                    FBValues = []
-                    for i in range(len(SortedIDs)):
-                        for j in range(len(IDList)):
-                            if(SortedIDs[i]==IDList[j]):
-                                FAdjP.append(AdjP[j])
-                                FPList.append(PList[j])
-                                FtValues.append(tValues[j])
-                                FBValues.append(BValues[j])
-                                break
-                    completeinterestset = []
-                    for i in range(len(SortedIDs)):
-                        completeinterestset.append([SortedIDs[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
-                    plt.bar(SortedGenes[:9],logssorted[:9])
-                    plt.title("Interest Gene logFCs")
-                    plt.xlabel("Gene.Symbol")
-                    plt.xticks(fontsize=8)
-                    plt.ylabel("logFC")
-                    plt.show()
-                    plt.savefig(savefigpath3)
-                    interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
-                    print(tabulate(completeinterestset, headers=interesthead))
-
-                def updateSelect():
-                    # Perform the HTTP request
-                    response = await pyfetch('url_to_your_directory')
-                    csv_files = parse_csv_filenames(response) # Implement this function based on your directory structure
-
-                    # Update the <select> element
-                    select_element = Element('fileSelect').element
-                    for file in csv_files:
-                        option = document.createElement('option')
-                        option.text = file
-                        option.value = file
-                        select_element.appendChild(option)
-
-                # This is a placeholder, you need to implement it based on the response structure
-                def parse_csv_filenames(response):
-                    # Parse the CSV filenames from the response
-                    # Return a list of filenames
-                    return []
-            </py-script>
         </main>
 
     </body>
