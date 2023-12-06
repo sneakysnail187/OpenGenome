@@ -59,7 +59,7 @@
             </form>
             <div class="flex justify-center mt-8" hidden>
                 
-                <button id="loadData" py-click="main()" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
+                <button id="loadData" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
                     Load Data
                 </button>
                 <button id="openAnalysisButton" py-click="loadCSV()" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
@@ -91,9 +91,36 @@
             from js import file
             import pandas as pd
             import csv
-
-            async def loadCSV():
-                df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')
+            from tabulate import tabulate
+            IDList = []
+            AdjP = []
+            PList = []
+            tValues = []
+            BValues = []
+            logFCs = []
+            GeneSymbols = []
+            GeneTitles = []
+            GeneIDs = []
+            FilteredIDs = []
+            FlogFCs = []
+            FGeneSymbols = []
+            FGeneTitles = []
+            tabledata = []
+            SortedIDs = []
+            SortedGenes = []
+            SortedTitles = []
+            logssorted = []
+            completeinterestset = []
+            FAdjP = []
+            FPList = []
+            FtValues = []
+            FBValues = []
+            sortedtabledata = []
+            savefigpath = "PFilteredLogFC.png"
+            savefigpath2 = "LargestLogFCs.png"
+            savefigpath3 = "InterestLogFCs.png"
+            async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path, where to save figs?
+                df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
                 IDList = []
                 AdjP = []
                 PList = []
@@ -112,6 +139,73 @@
                 GeneSymbols = df['Gene.symbol'].tolist()
                 GeneTitles = df['Gene.title'].tolist()
                 GeneIDs = df['Gene.ID'].tolist()
+                FilteredIDs = []
+                FlogFCs = []
+                FGeneSymbols = []
+                FGeneTitles = []
+                for p in range(len(PList)):
+                     if (PList[p]>0.99):
+                        FilteredIDs.append(IDList[p])
+                        FlogFCs.append(logFCs[p])
+                        FGeneSymbols.append(GeneSymbols[p])
+                        FGeneTitles.append(GeneTitles[p])
+                plt.bar(FilteredIDs, FlogFCs, width = 0.4)
+                plt.xlabel("ID")
+                plt.ylabel("logFC")
+                plt.savefig(savefigpath)
+                tabledata = []
+                for i in range(len(FilteredIDs)):
+                    tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
+                head = ["ID","logFC","Gene Symbols","Gene Titles"]
+                print(tabulate(tabledata, headers=head))
+                logssorted = sorted(FlogFCs)[:5]+sorted(FlogFCs)[-5:]
+                SortedIDs = []
+                for i in range(len(logssorted)):
+                    for j in range(len(tabledata)):
+                        if((tabledata[j][1])==(logssorted[i])):
+                            print(tabledata[j][0],"added")
+                            SortedIDs.append(tabledata[j][0])
+                            break
+                plt.bar(SortedIDs,logssorted)
+                plt.title("Genomes with largest magnitude logFC values")
+                plt.xticks(fontsize=5)
+                plt.xlabel("ID")
+                plt.ylabel("logFC")
+                plt.savefig(savefigpath2)
+
+            async def shortCSV(): #this should be reserved for filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
+                df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
+                SortedIDs = []
+                SortedGenes = []
+                SortedTitles = []
+                logssorted = []
+                SortedIDs = df["ID"].tolist()
+                SortedGenes = df["Gene.Symbol"].tolist()
+                SortedTitles = df["Gene.Title"].tolist()
+                logssorted = df["logFC"].tolist()
+                FAdjP = []
+                FPList = []
+                FtValues = []
+                FBValues = []
+                for i in range(len(SortedIDs)):
+                    for j in range(len(IDList)):
+                        if(SortedIDs[i]==IDList[j]):
+                            FAdjP.append(AdjP[j])
+                            FPList.append(PList[j])
+                            FtValues.append(tValues[j])
+                            FBValues.append(BValues[j])
+                            break
+                completeinterestset = []
+                for i in range(len(SortedIDs)):
+                    completeinterestset.append([SortedIDs[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
+                plt.bar(SortedGenes[:9],logssorted[:9])
+                plt.title("Interest Gene logFCs")
+                plt.xlabel("Gene.Symbol")
+                plt.xticks(fontsize=8)
+                plt.ylabel("logFC")
+                plt.savefig(savefigpath3)
+                interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
+                print(tabulate(completeinterestset, headers=interesthead))
             </py-script>
         </div>
 
