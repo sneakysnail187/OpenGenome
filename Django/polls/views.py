@@ -27,17 +27,21 @@ def postpage(request):
 
 def upload(request):
     if request.method == 'POST':
-        input_csv = request.FILES['csvFile']
-        new_csv = UserCSV(csv = input_csv)
-        new_csv.save()
-        #g.submittedCSVFileNames.append(new_result.csvFile.name)
-        #files = g.submittedCSVFileNames
-        new_csv_name = CSVNames(csvName = input_csv.name)
+        #differentiating post requests
+        if 'upload' in request.POST:
+            input_csv = request.FILES['csvFile']
+            new_csv = UserCSV(csv = input_csv)
+            new_csv.save()
+            new_csv_name = CSVNames(csvName = input_csv.name)
+        if 'analyze' in request.POST:
+            csvName = request.POST['fileName']
+            print(csvName)
+    #context dictionary for dropdown menu
     fileNames = CSVNames.objects.all().distinct()
     for name in fileNames:
         print(name)
     context = {"names" : fileNames}
-
+    
     return render(request, 'upload.html', context)
 
 #results needs to pull from db, where postpage uploads to db

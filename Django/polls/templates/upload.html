@@ -53,7 +53,7 @@
                     Upload Your Data
                 </h2>
                 
-                <form action = '' method = "POST" enctype="multipart/form-data"> {% csrf_token%}
+                <form action = '' method = "POST" enctype="multipart/form-data" name="upload"> {% csrf_token%}
                     <div class="mb-4 px-20">
                         <input id="fileInput" type="file" class="justify-center border-2 border-gray-300 p-2 my-4 w-full rounded-2xl" name="csvFile" id="csvFile">
                     </div>
@@ -75,11 +75,18 @@
                 <div class="flex justify-center mt-8">
                     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
                     <select name ="fileName" id = "name" >
-                        {% for name in names %}
-                        <option value = "{{name}}">{{name}}</option>
-                        {% endfor %}
-                        <option value="1">No files available</option>
-                        <option value="2">Please press refresh button</option>
+                            {% for name in names %}
+                             <option value= "1">Files Loaded </option>
+                             <option value = "{{name}}">{{name}}</option>
+                            {% endfor %}
+                            <!--<option value="2">No files available</option>
+                            <option value="3">Please press refresh button</option> -->
+                    <script> 
+                    let optionsLength = document.getElementById("name").length;
+                    if(options.length == 0)
+                        <option value="2">No files available</option>
+                        <option value="3">Please press refresh button</option>
+                    </script>
                     </select>
 
                 </div>
@@ -88,9 +95,12 @@
                     <button id="refreshDataButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="refreshList">
                         Refresh
                     </button>
-                    <button id="analyzeButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
+                    <!-- form action can send form data to a url once submitted-->
+                <form action = '' method="POST" enctype = "text/plain" name = "analyze"> {% csrf_token %}
+                    <button id="analyzeButton" type="submit" href="analytics.html" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
                         Analyze
                     </button>
+                    </form>
                 </div>
 
             </section>
