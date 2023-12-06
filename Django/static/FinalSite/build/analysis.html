@@ -94,8 +94,6 @@
 
             async def loadCSV():
                 df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')
-                print("The dataframe is made")
-                
                 IDList = []
                 AdjP = []
                 PList = []
@@ -105,9 +103,6 @@
                 GeneSymbols = []
                 GeneTitles = []
                 GeneIDs = []
-                print(df.head(10))
-                print("Arrays initialized")
-            
                 IDList = df['ID'].tolist()
                 AdjP = df['adj.P.Val'].tolist()
                 PList = df['P.Value'].tolist()
@@ -117,22 +112,6 @@
                 GeneSymbols = df['Gene.symbol'].tolist()
                 GeneTitles = df['Gene.title'].tolist()
                 GeneIDs = df['Gene.ID'].tolist()
-                print("Arrays filled")
-
-
-            async def main():
-                from js import file
-                # Check if is not empty
-                if file is not None:
-                    # Read the CSV file into a pandas DataFrame
-                    df = file # Display the first 10 rows and all columns
-                    print('The csv is read')
-                    Element("pandas-output").element.style.display = "block"
-                    print("The element is created")
-                    display(df.head().style.format(precision=2), target="pandas-output-inner", append = "False")
-                    print("The dataframe is displayed")
-                else:
-                    print("The file is not a CSV.")
             </py-script>
         </div>
 
