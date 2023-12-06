@@ -11,6 +11,11 @@
 </head>
 
 <body class ="min-h-screen bg-slate-50 dark:bg-black dark:text-teal-700">
+    <py-config hidden>
+      packages = ["pandas", "pandas", "jinja2"]
+      [[fetch]]
+      from = 'https://raw.githubusercontent.com/sneakysnail187/OpenGenome/main/Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv'
+    </py-config>
     <header class="bg-teal-300 text-black sticky dark:bg-teal-700 top-0 z-10">
         <section class="max-w-4xl mx-auto p-4 flex justify-between items-center">
             <h1 class="text-3xl font-medium">
@@ -63,31 +68,59 @@
             <script>
                 const button = document.getElementById('verifyButton');
                 const button2 = document.getElementById('openAnalysisButton');
+                const button3 = document.getElementById('loadData');
 
                 var file;
-                document.getElementById('csvFile').addEventListener('change', function(event) {
+                document.getElementById('fileInput').addEventListener('change', function(event) {
                     file = event.target.files[0]; // Get the selected file
                 });
 
-                // Add a click event listener to the button
-                button.addEventListener('click', function() {
+                button3.addEventListener('click', function() {
                     // Check if the input field is empty
-                    if (file != null) {
-                        button.innerText = "Valid CSV";
-                        
-                        //button2.style.display = 'block'; // Needs removing but used as demo
-                        
-                    }
+                    document.getElementById('fileInput').addEventListener('change', function(event) {
+                    file = reader.readAsBinaryString(event.target.files[0]); // Get the selected file
+                    });
                 });
-                
-            </script>
-
         
-            <py-script>
+            </script>
+        <div> 
+            <py-script hidden>
             from pyscript import Element
-            async def main():
-                input_element = Element("fileInput")
-                input_file = input_element.element.files[0]
+            from js import file
+            import pandas as pd
+            import csv
+            from tabulate import tabulate
+            from views import submittedCSVFileNames
+
+            IDList = []
+            AdjP = []
+            PList = []
+            tValues = []
+            BValues = []
+            logFCs = []
+            GeneSymbols = []
+            GeneTitles = []
+            GeneIDs = []
+            FilteredIDs = []
+            FlogFCs = []
+            FGeneSymbols = []
+            FGeneTitles = []
+            tabledata = []
+            SortedIDs = []
+            SortedGenes = []
+            SortedTitles = []
+            logssorted = []
+            completeinterestset = []
+            FAdjP = []
+            FPList = []
+            FtValues = []
+            FBValues = []
+            sortedtabledata = []
+            savefigpath = "PFilteredLogFC.png"
+            savefigpath2 = "LargestLogFCs.png"
+            savefigpath3 = "InterestLogFCs.png"
+            async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path, where to save figs?
+                df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
                 IDList = []
                 AdjP = []
                 PList = []
@@ -97,24 +130,85 @@
                 GeneSymbols = []
                 GeneTitles = []
                 GeneIDs = []
-                print("Works")
-                genomedata = csv.DictReader(input_file)
-                print("Works!!")
-                for row in genomedata:
-                    print("Works!")
-                if (row['Gene.symbol']!=""):
-                    IDList.append(row['ID'])
-                    AdjP.append(float(row['adj.P.Val']))
-                    PList.append(float(row['P.Value']))
-                    tValues.append(float(row['t']))
-                    BValues.append(float(row['B']))
-                    logFCs.append(float(row['logFC']))
-                    GeneSymbols.append(row['Gene.symbol'])
-                    GeneTitles.append(row['Gene.title'])
-                    GeneIDs.append(row['Gene.ID'])
+                IDList = df['ID'].tolist()
+                AdjP = df['adj.P.Val'].tolist()
+                PList = df['P.Value'].tolist()
+                tValues = df['t'].tolist()
+                BValues = df['B'].tolist()
+                logFCs = df['logFC'].tolist()
+                GeneSymbols = df['Gene.symbol'].tolist()
+                GeneTitles = df['Gene.title'].tolist()
+                GeneIDs = df['Gene.ID'].tolist()
+                FilteredIDs = []
+                FlogFCs = []
+                FGeneSymbols = []
+                FGeneTitles = []
+                for p in range(len(PList)):
+                     if (PList[p]>0.99): #maybe make this editable? setting statistical threshold
+                        FilteredIDs.append(IDList[p])
+                        FlogFCs.append(logFCs[p])
+                        FGeneSymbols.append(GeneSymbols[p])
+                        FGeneTitles.append(GeneTitles[p])
+                plt.bar(FilteredIDs, FlogFCs, width = 0.4)
+                plt.xlabel("ID")
+                plt.ylabel("logFC")
+                plt.show()
+                plt.savefig(savefigpath)
+                tabledata = []
+                for i in range(len(FilteredIDs)):
+                    tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
+                head = ["ID","logFC","Gene Symbols","Gene Titles"]
+                print(tabulate(tabledata, headers=head))
+                logssorted = sorted(FlogFCs)[:5]+sorted(FlogFCs)[-5:]
+                SortedIDs = []
+                for i in range(len(logssorted)):
+                    for j in range(len(tabledata)):
+                        if((tabledata[j][1])==(logssorted[i])):
+                            print(tabledata[j][0],"added")
+                            SortedIDs.append(tabledata[j][0])
+                            break
+                plt.bar(SortedIDs,logssorted)
+                plt.title("Genomes with largest magnitude logFC values")
+                plt.xticks(fontsize=5)
+                plt.xlabel("ID")
+                plt.ylabel("logFC")
+                plt.savefig(savefigpath2)
+
+            async def shortCSV(): #this should be reserved for user filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
+                df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
+                SortedIDs = []
+                SortedGenes = []
+                SortedTitles = []
+                logssorted = []
+                SortedIDs = df["ID"].tolist()
+                SortedGenes = df["Gene.Symbol"].tolist()
+                SortedTitles = df["Gene.Title"].tolist()
+                logssorted = df["logFC"].tolist()
+                FAdjP = []
+                FPList = []
+                FtValues = []
+                FBValues = []
+                for i in range(len(SortedIDs)):
+                    for j in range(len(IDList)):
+                        if(SortedIDs[i]==IDList[j]):
+                            FAdjP.append(AdjP[j])
+                            FPList.append(PList[j])
+                            FtValues.append(tValues[j])
+                            FBValues.append(BValues[j])
+                            break
+                completeinterestset = []
+                for i in range(len(SortedIDs)):
+                    completeinterestset.append([SortedIDs[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
+                plt.bar(SortedGenes[:9],logssorted[:9])
+                plt.title("Interest Gene logFCs")
+                plt.xlabel("Gene.Symbol")
+                plt.xticks(fontsize=8)
+                plt.ylabel("logFC")
+                plt.savefig(savefigpath3)
+                interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
+                print(tabulate(completeinterestset, headers=interesthead))
             </py-script>
-
-
+        </div>
         </section>
 
         <hr class="mx-auto bg-black dark:bg-white w-1/2">
