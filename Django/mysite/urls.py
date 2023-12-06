@@ -27,5 +27,5 @@ urlpatterns = [
     path("", views.index),
     path("about/", views.about),
     path("postpage/", views.postpage),
-    path("analysis/", views.analysis)
+    path("upload/", views.upload)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

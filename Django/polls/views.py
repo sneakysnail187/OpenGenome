@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+from .global_ import *
 
 #functions for rendering the individual html pages 
 def index(request):
@@ -24,16 +25,16 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
-submittedCSVFileNames = []
-def analysis(request):
+def upload(request):
     if request.method == 'POST':
         input_csv = request.FILES['csvFile']
         new_csv = UserCSV(csv = input_csv)
         new_csv.save()
-        submittedCsvNames.append(new_result.csvFile.name)
+        submittedCSVFileNames.append(new_result.csvFile.name)
+    if request.method == 'GET':
+        files = submittedCSVFileNames
 
     return render(request, 'analysis.html')
-
 
 #results needs to pull from db, where postpage uploads to db
 #
