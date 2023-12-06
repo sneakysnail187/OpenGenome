@@ -29,8 +29,11 @@ class Plots(models.Model):
 
 class UserCSV(models.Model):
     csv = models.FileField(upload_to = 'SubmittedCSV', blank = True, null = True)
+    name = models.CharField(max_length = 200,null = True, blank = True)
+    def __str__ (self):
+        return '{}'.format(self.name)
 
 class CSVNames(models.Model):
-    csvName = models.TextField()
+    csvName = models.CharField(max_length = 200, null = True, blank = True)
     def __str__(self):
         return self.csvName

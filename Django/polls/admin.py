@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Result, Comment, UserCSV
+from .models import Result, Comment, UserCSV, CSVNames
 
 admin.site.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Result)
 admin.site.register(UserCSV)
+admin.site.register(CSVNames)

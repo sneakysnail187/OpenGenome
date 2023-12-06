@@ -53,12 +53,12 @@
                     Upload Your Data
                 </h2>
                 
-                <form action = '' method = "POST" enctype="multipart/form-data" name="upload"> {% csrf_token%}
+                <form name="upload" action = '' method = "POST" enctype="multipart/form-data" > {% csrf_token %}
                     <div class="mb-4 px-20">
                         <input id="fileInput" type="file" class="justify-center border-2 border-gray-300 p-2 my-4 w-full rounded-2xl" name="csvFile" id="csvFile">
                     </div>
                     <div class="flex justify-center mt-8">
-                        <button id="verifyButton" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
+                        <button name="button_type" value="submit_files" id="verifyButton" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 rounded">
                             Upload
                         </button>
                     </div>
@@ -71,7 +71,7 @@
                 <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
                     Analyze Your Data
                 </h2>
-
+                <form action = '' method="POST" enctype = "multipart/form-data" name = "analyze"> {% csrf_token %}
                 <div class="flex justify-center mt-8">
                     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
                     <select name ="fileName" id = "name" >
@@ -96,12 +96,12 @@
                         Refresh
                     </button>
                     <!-- form action can send form data to a url once submitted-->
-                <form action = '' method="POST" enctype = "text/plain" name = "analyze"> {% csrf_token %}
-                    <button id="analyzeButton" type="submit" href="analytics.html" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
+                
+                    <button name="button_type" value="analyze" id="analyzeButton" type="submit" href="analytics.html" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
                         Analyze
                     </button>
                     </form>
-                </div>
+                </div></form>
 
             </section>
 

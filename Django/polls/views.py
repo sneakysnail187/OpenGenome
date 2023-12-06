@@ -25,23 +25,21 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
+csvToAnalyze = ''
 def upload(request):
-    if request.method == 'POST':
-        #differentiating post requests
-        if 'upload' in request.POST:
+    if request.POST.get("button_type") == "submit_files":
             input_csv = request.FILES['csvFile']
-            new_csv = UserCSV(csv = input_csv)
+            new_csv = UserCSV(csv = input_csv, name = input_csv.name)
             new_csv.save()
-            new_csv_name = CSVNames(csvName = input_csv.name)
-        if 'analyze' in request.POST:
-            csvName = request.POST['fileName']
-            print(csvName)
+    if request.POST.get("button_type") == "analyze":
+            csvToAnalyze = request.POST['fileName']
+            print(csvToAnalyze)
     #context dictionary for dropdown menu
-    fileNames = CSVNames.objects.all().distinct()
-    for name in fileNames:
-        print(name)
+    fileNames = UserCSV.objects.all().distinct()
+    #for name in fileNames:
+        #print(name)
     context = {"names" : fileNames}
-    
+
     return render(request, 'upload.html', context)
 
 #results needs to pull from db, where postpage uploads to db
