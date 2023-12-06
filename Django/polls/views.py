@@ -31,5 +31,7 @@ def analysis(request):
         new_csv.save()
 
     return render(request, 'analysis.html')
+
+
 #results needs to pull from db, where postpage uploads to db
 #
