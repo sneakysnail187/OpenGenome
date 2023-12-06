@@ -5,8 +5,8 @@ class Result(models.Model):
     experimentTitle = models.CharField(max_length = 200,null = False, blank = False)
     targetGenes = models.CharField(max_length = 200,null = False, blank = False)
     experimentNotes = models.TextField()
-    csvFile = models.FileField(upload_to = 'uploads', blank = True, null = True)
-    plot = models.ImageField(upload_to = 'uploads', blank = True, null = True)
+    csvFile = models.FileField(upload_to = 'ResultsCSV', blank = True, null = True)
+    plot = models.ImageField(upload_to = 'Plots', blank = True, null = True)
     def __str__(self):
         return self.experimentTitle
 
@@ -28,4 +28,4 @@ class Plots(models.Model):
     plot = models.ImageField()
 
 class UserCSV(models.Model):
-    csv = models.FileField(upload_to = 'uploads', blank = True, null = True)
+    csv = models.FileField(upload_to = 'SubmittedCSV', blank = True, null = True)
