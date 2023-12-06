@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenGenome</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="min-h-screen bg-slate-50 dark:bg-black dark:text-teal-700">
+    <header class="bg-teal-300 text-black sticky dark:bg-teal-700 top-0 z-10">
+      <section class="max-w-4xl mx-auto p-4 flex justify-between items-center">
+        <h1 class="text-3xl font-medium">
+          <a href="#hero"> OpenGenome - Post Maker </a>
+        </h1>
+        <div>
+          <button
+            id="mobile-open-button"
+            class="text-3xl sm:hidden focus:outline-none"
+          >
+            &#9776;
+          </button>
+          <nav class="hidden sm:block space-x-8 text-xl" aria-labels="main">
+            <a href="analysis.html" class="hover:opacity-90"> Analysis </a>
+            <a href="results.html" class="hover:opacity-90"> Results </a>
+            <a href="index.html" class="hover:opacity-90"> Home </a>
+          </nav>
+        </div>
+      </section>
+    </header>
+    <section id="info" class="p-6 my-12">
+      <h2
+        class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white"
+      >
+        Your Results
+      </h2>
+      <div class="container mx-auto p-4">
+        <form>
+          <div class="mb-4">
+            <label class="text-xl">Experiment Name</label><br />
+            <input
+              type="text"
+              class="border-2 border-gray-300 p-2 w-full"
+              name="experimentName"
+              id="experimentName"
+              placeholder="Your experiments' name"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="text-xl">Name</label><br />
+            <input
+              type="text"
+              class="border-2 border-gray-300 p-2 w-full"
+              name="name"
+              id="name"
+              placeholder="Your name"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="text-xl">Target Genes</label><br />
+            <input
+              type="text"
+              class="border-2 border-gray-300 p-2 w-full"
+              name="targetGenes"
+              id="targetGenes"
+              placeholder="Your target genes"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="text-xl">Experiment Notes</label><br />
+            <textarea
+              name="comment"
+              id="comment"
+              class="border-2 border-gray-300 p-2 w-full"
+              placeholder="Your experiment notes"
+            ></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="text-xl">Upload Your Original CSV File</label><br />
+            <input
+              type="file"
+              class="border-2 border-gray-300 p-2 w-full"
+              name="csvFile"
+              id="csvFile"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="text-xl">Upload Your Plots</label><br />
+            <input
+              type="file"
+              class="border-2 border-gray-300 p-2 w-full"
+              name="jpegFiles"
+              id="jpegFiles"
+              multiple
+            />
+          </div>
+          <div class="mb-4">
+            <button
+              type="submit"
+              class="bg-teal-700 text-white px-4 py-2 rounded font-medium"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
