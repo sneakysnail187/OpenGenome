@@ -75,7 +75,6 @@
                     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
                     <select data-te-select-init>
                         <option value="1">No files available</option>
-                        <option value="2">Please press refresh button</option>
                     </select>
                 </div>
 
@@ -106,11 +105,13 @@
             <script>
                 var selectedFile;
                 var dropdown = document.getElementById('fileSelect');
+                var selectedFile;
                 function openAnalysis() {
-                    if(dropdown[0].value != "1"){
-                        selectedFile = dropdown.options[dropdown.selectedIndex].value;
+                    selectedFile = dropdown.options[dropdown.selectedIndex].value;
+                    window.open("analytics.html");
+                    if (selectedFile.options.length > 1) {
+                        localStorage.setItem("selectedFile", selectedFile);
                     }
-                    open("analytics.html");
                 }
             </script>
 
