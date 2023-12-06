@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-from .global_ import *
+import polls.global_ as g
 
 #functions for rendering the individual html pages 
 def index(request):
@@ -25,15 +25,20 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
-def analysis(request):
+def upload(request):
     if request.method == 'POST':
         input_csv = request.FILES['csvFile']
         new_csv = UserCSV(csv = input_csv)
         new_csv.save()
-        global_.submittedCSVFileNames.append(new_result.csvFile.name)
+        #g.submittedCSVFileNames.append(new_result.csvFile.name)
+        #files = g.submittedCSVFileNames
+        new_csv_name = CSVNames(csvName = input_csv.name)
+    fileNames = list(CSVNames.objects.all().distinct())
+    for name in fileNames:
+        print(name)
+    context = {"name" : fileNames}
 
-    return render(request, 'analysis.html')
-
+    return render(request, 'upload.html', context)
 
 #results needs to pull from db, where postpage uploads to db
 #   urlName = 'http://127.0.0.1:8000' + submittedCsvFileNames[x] <!-- x here is the index chosen from the dropdown bar-->

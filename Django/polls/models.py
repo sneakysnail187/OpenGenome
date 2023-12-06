@@ -29,3 +29,8 @@ class Plots(models.Model):
 
 class UserCSV(models.Model):
     csv = models.FileField(upload_to = 'SubmittedCSV', blank = True, null = True)
+
+class CSVNames(models.Model):
+    csvName = models.TextField()
+    def __str__(self):
+        return self.csvName
