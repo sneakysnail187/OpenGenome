@@ -25,6 +25,7 @@ urlpatterns = [
     path("polls/", include("polls.urls")),
     path("admin/", admin.site.urls),
     path("", views.index),
+    path("results.html", views.results),
     path("about.html", views.about),
     path("postpage.html", views.postpage),
     path("upload.html", views.upload)

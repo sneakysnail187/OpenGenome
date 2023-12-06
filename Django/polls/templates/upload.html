@@ -97,9 +97,18 @@
                     </button>
                     <!-- form action can send form data to a url once submitted-->
                 <form action = '' method="POST" enctype = "text/plain" name = "analyze"> {% csrf_token %}
-                    <button id="analyzeButton" type="submit" href="analytics.html" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
+                    <button onclick = "getOption()"id="analyzeButton" type="submit" href="analytics.html" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
                         Analyze
                     </button>
+                    <script type="text/javascript">
+                        function getOption() {
+                            selectElement = 
+                                  document.querySelector('#name');
+                            output = 
+                                  selectElement.options[selectElement.selectedIndex].value;
+                            document.querySelector('.output').textContent = output;
+                        }
+                    </script>
                     </form>
                 </div>
 

@@ -44,5 +44,7 @@ def upload(request):
     
     return render(request, 'upload.html', context)
 
+def results(request):
+    return render(request, 'results.html')
 #results needs to pull from db, where postpage uploads to db
 #   urlName = 'http://127.0.0.1:8000' + submittedCsvFileNames[x] <!-- x here is the index chosen from the dropdown bar-->
