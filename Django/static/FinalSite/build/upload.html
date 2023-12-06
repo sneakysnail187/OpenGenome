@@ -23,7 +23,7 @@
         <header class="bg-teal-300 text-black sticky dark:bg-teal-700 top-0 z-10">
             <section class="max-w-4xl mx-auto p-4 flex justify-between items-center">
                 <h1 class="text-3xl font-medium">
-                    <a href="#hero"> OpenGenome - Data Analysis </a>
+                    <a href="#hero"> OpenGenome - Upload </a>
                 </h1>
                 <div>
                     <button id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none">
@@ -75,7 +75,6 @@
                     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
                     <select data-te-select-init>
                         <option value="1">No files available</option>
-                        <option value="2">Please press refresh button</option>
                     </select>
                 </div>
 
@@ -83,15 +82,10 @@
                     <button id="refreshDataButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="refreshList">
                         Refresh
                     </button>
-                    <button id="analyzeButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
+                    <button id="analyzeButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" onclick="openAnalysis()">
                         Analyze
                     </button>
                 </div>
-
-            </section>
-
-            <section id="analysisFunctions" class="my-4 pt-10">
-
 
             </section>
 
@@ -108,7 +102,22 @@
             </div>
             </section>
 
+            <script>
+                var selectedFile;
+                var dropdown = document.getElementById('fileSelect');
+                var selectedFile;
+                function openAnalysis() {
+                    selectedFile = dropdown.options[dropdown.selectedIndex].value;
+                    window.open("analytics.html");
+                    if (selectedFile.options.length > 1) {
+                        localStorage.setItem("selectedFile", selectedFile);
+                    }
+                }
+            </script>
+
+
             <py-script hidden>
+                from js import openAnalytics()
                 from pyscript import Element
                 import pandas as pd
                 import csv
@@ -140,6 +149,10 @@
                 savefigpath = "PFilteredLogFC.png"
                 savefigpath2 = "LargestLogFCs.png"
                 savefigpath3 = "InterestLogFCs.png"
+
+                async def openAnalysis():
+                    openAnalytics()
+
                 async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path, where to save figs?
                     df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
                     IDList = []

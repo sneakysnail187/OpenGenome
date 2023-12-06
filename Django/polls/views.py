@@ -25,16 +25,15 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
-def upload(request):
+def analysis(request):
     if request.method == 'POST':
         input_csv = request.FILES['csvFile']
         new_csv = UserCSV(csv = input_csv)
         new_csv.save()
-        submittedCSVFileNames.append(new_result.csvFile.name)
-    if request.method == 'GET':
-        files = submittedCSVFileNames
+        global_.submittedCSVFileNames.append(new_result.csvFile.name)
 
     return render(request, 'analysis.html')
 
+
 #results needs to pull from db, where postpage uploads to db
-#
+#   urlName = 'http://127.0.0.1:8000' + submittedCsvFileNames[x] <!-- x here is the index chosen from the dropdown bar-->
