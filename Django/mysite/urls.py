@@ -25,7 +25,7 @@ urlpatterns = [
     path("polls/", include("polls.urls")),
     path("admin/", admin.site.urls),
     path("", views.index),
-    path("about/", views.about),
-    path("postpage/", views.postpage),
-    path("upload/", views.upload)
+    path("about.html", views.about),
+    path("postpage.html", views.postpage),
+    path("upload.html", views.upload)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
