@@ -1,13 +1,37 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import FileResponse
+from django.urls import reverse_lazy
 from .models import *
 import polls.GenomeAnalysis as g
 from tabulate import tabulate
 
 
 #functions for rendering the individual html pages 
+
 def index(request):
     return render(request, 'index.html')
+
+def download_result_csv(request, result_id):
+    result = get_object_or_404(Result, pk=result_id)
+    file_path = result.csvFile.path
+    response = FileResponse(open(file_path, 'rb'))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = f'attachment; filename="{result.experimentTitle}"'
+    return response
+
+def download_result_plot(request, result_id):
+    result = get_object_or_404(Result, pk=result_id)
+    file_path = result.plot.path
+    response = FileResponse(open(file_path, 'rb'))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = f'attachment; filename="{result.experimentTitle}"'
+    return response
+
+def forum(request):
+    _results = Result.objects.all()
+
+    context={'results':_results}
+    return render(request, 'forum.html',context)
 
 def about(request):
     return render(request, 'about.html')
@@ -30,7 +54,7 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
-print("we are here")
+
 class viewer:
     csvToAnalyze = ''
     IDList = []

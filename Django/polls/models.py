@@ -37,3 +37,12 @@ class CSVNames(models.Model):
     csvName = models.CharField(max_length = 200, null = True, blank = True)
     def __str__(self):
         return self.csvName
+    
+class Forum(models.Model):
+    name = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    resultLink = models.ForeignKey(Result, on_delete=models.CASCADE, related_name='forum')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return str(self.title)
