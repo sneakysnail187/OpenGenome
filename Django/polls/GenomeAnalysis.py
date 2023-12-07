@@ -48,9 +48,10 @@ async def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs cs
     GeneSymbols = df['Gene.symbol'].tolist()
     GeneTitles = df['Gene.title'].tolist()
     GeneIDs = df['Gene.ID'].tolist()
+    return IDList,AdjP,PList,tValues,BValues,logFCs,GeneSymbols,GeneTitles,GeneIDs
     
 
-async def plotPFilteredlogs(pDesired):
+async def plotPFilteredlogs(pDesired, IDList, PList, logFCs, GeneSymbols, GeneTitles):
     FilteredIDs = []
     FlogFCs = []
     FGeneSymbols = []
@@ -72,6 +73,7 @@ async def plotPFilteredlogs(pDesired):
         tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
     head = ["ID","logFC","Gene Symbols","Gene Titles"]
     print(tabulate(tabledata, headers=head))
+    return FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles
 
 async def logMag(menuOption, num):
     if (menuOption==1):
