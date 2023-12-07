@@ -1,7 +1,6 @@
 import pandas as pd
 from tabulate import tabulate
 import matplotlib.pyplot as plt
-from views import getPath
 IDList = []
 AdjP = []
 PList = []
@@ -134,23 +133,20 @@ async def posLogs(num):
     plt.show()
     plt.savefig(savefigpath2)
 
-async def shortCSV(csvpath): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
-    df = pd.read_csv(csvpath)#replace filepath
-    SortedIDs = []
+async def shortCSV(IDInput): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
     SortedGenes = []
     SortedTitles = []
     logssorted = []
-    SortedIDs = df["ID"].tolist()
-    SortedGenes = df["Gene.Symbol"].tolist()
-    SortedTitles = df["Gene.Title"].tolist()
-    logssorted = df["logFC"].tolist()
     FAdjP = []
     FPList = []
     FtValues = []
     FBValues = []
-    for i in range(len(SortedIDs)):
+    for i in range(len(IDInput)):
         for j in range(len(IDList)):
-            if(SortedIDs[i]==IDList[j]):
+            if(IDInput[i]==IDList[j]):
+                SortedGenes.append(GeneSymbols[j])
+                SortedTitles.append(GeneTitles[j])
+                logssorted.append(logFCs[j])
                 FAdjP.append(AdjP[j])
                 FPList.append(PList[j])
                 FtValues.append(tValues[j])
@@ -164,7 +160,7 @@ async def shortCSV(csvpath): #this should be reserved for user filtered csvs, pr
     plt.show()
     plt.savefig(savefigpath3)
     completeinterestset = []
-    for i in range(len(SortedIDs)):
-        completeinterestset.append([SortedIDs[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
+    for i in range(len(IDInput)):
+        completeinterestset.append([IDInput[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
     interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
     print(tabulate(completeinterestset, headers=interesthead))
