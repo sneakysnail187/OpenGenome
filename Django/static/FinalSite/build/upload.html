@@ -150,7 +150,7 @@
                 savefigpath2 = "LargestLogFCs.png"
                 savefigpath3 = "InterestLogFCs.png"
 
-                async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path, where to save figs?
+                async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path
                     df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
                     IDList = []
                     AdjP = []
@@ -170,17 +170,21 @@
                     GeneSymbols = df['Gene.symbol'].tolist()
                     GeneTitles = df['Gene.title'].tolist()
                     GeneIDs = df['Gene.ID'].tolist()
+                    
+
+                async def plotPFilteredlogs(pDesired):
                     FilteredIDs = []
                     FlogFCs = []
                     FGeneSymbols = []
                     FGeneTitles = []
                     for p in range(len(PList)):
-                        if (PList[p]>0.99): #maybe make this editable? setting statistical threshold
+                        if (PList[p]>pDesired): #maybe make this editable? setting statistical threshold
                             FilteredIDs.append(IDList[p])
                             FlogFCs.append(logFCs[p])
                             FGeneSymbols.append(GeneSymbols[p])
                             FGeneTitles.append(GeneTitles[p])
                     plt.bar(FilteredIDs, FlogFCs, width = 0.4)
+                    plt.title("P-Filtered Genomes")
                     plt.xlabel("ID")
                     plt.ylabel("logFC")
                     plt.show()
@@ -190,7 +194,17 @@
                         tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
                     head = ["ID","logFC","Gene Symbols","Gene Titles"]
                     print(tabulate(tabledata, headers=head))
-                    logssorted = sorted(FlogFCs)[:5]+sorted(FlogFCs)[-5:]
+
+                async def logMag(menuOption, num):
+                    if (menuOption==1):
+                        greatestMag(num)
+                    if (menuOption==2):
+                        negLogs(num)
+                    if (menuOption==3):
+                        posLogs(num)
+
+                async def greatestMag(num):
+                    logssorted = sorted(FlogFCs)[:(num/2)]+sorted(FlogFCs)[-(num/2):]
                     SortedIDs = []
                     for i in range(len(logssorted)):
                         for j in range(len(tabledata)):
@@ -206,7 +220,41 @@
                     plt.show()
                     plt.savefig(savefigpath2)
 
-                async def shortCSV(): #this should be reserved for user filtered csvs with 10 genomes, so needs its own button, does a filtered plot and returns all data in a table
+                async def negLogs(num):
+                    logssorted = sorted(FlogFCs)[:(num/2)]
+                    SortedIDs = []
+                    for i in range(len(logssorted)):
+                        for j in range(len(tabledata)):
+                            if((tabledata[j][1])==(logssorted[i])):
+                                print(tabledata[j][0],"added")
+                                SortedIDs.append(tabledata[j][0])
+                                break
+                    plt.bar(SortedIDs,logssorted)
+                    plt.title("Genomes with largest negative logFC values")
+                    plt.xticks(fontsize=5)
+                    plt.xlabel("ID")
+                    plt.ylabel("logFC")
+                    plt.show()
+                    plt.savefig(savefigpath2)
+
+                async def posLogs(num):
+                    logssorted = sorted(FlogFCs)[-(num/2):]
+                    SortedIDs = []
+                    for i in range(len(logssorted)):
+                        for j in range(len(tabledata)):
+                            if((tabledata[j][1])==(logssorted[i])):
+                                print(tabledata[j][0],"added")
+                                SortedIDs.append(tabledata[j][0])
+                                break
+                    plt.bar(SortedIDs,logssorted)
+                    plt.title("Genomes with largest negative logFC values")
+                    plt.xticks(fontsize=5)
+                    plt.xlabel("ID")
+                    plt.ylabel("logFC")
+                    plt.show()
+                    plt.savefig(savefigpath2)
+
+                async def shortCSV(): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
                     df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
                     SortedIDs = []
                     SortedGenes = []
@@ -228,16 +276,16 @@
                                 FtValues.append(tValues[j])
                                 FBValues.append(BValues[j])
                                 break
-                    completeinterestset = []
-                    for i in range(len(SortedIDs)):
-                        completeinterestset.append([SortedIDs[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
-                    plt.bar(SortedGenes[:9],logssorted[:9])
+                    plt.bar(SortedGenes,logssorted)
                     plt.title("Interest Gene logFCs")
                     plt.xlabel("Gene.Symbol")
                     plt.xticks(fontsize=8)
                     plt.ylabel("logFC")
                     plt.show()
                     plt.savefig(savefigpath3)
+                    completeinterestset = []
+                    for i in range(len(SortedIDs)):
+                        completeinterestset.append([SortedIDs[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
                     interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
                     print(tabulate(completeinterestset, headers=interesthead))
 
