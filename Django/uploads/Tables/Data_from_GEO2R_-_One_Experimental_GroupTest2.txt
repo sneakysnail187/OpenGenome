@@ -1,0 +1,7 @@
+ID             Adj.P.Val    P.Value        t         B    logFC  Gene.Symbol    Gene.Title
+-----------  -----------  ---------  -------  --------  -------  -------------  -------------------------------------------
+203913_s_at        0.996      0.994  0.00774  -6.85946  0.00209  HPGD           hydroxyprostaglandin dehydrogenase 15-(NAD)
+229032_at          0.994      0.991  0.011    -6.85943  0.0021   WSCD2          WSC domain containing 2
+63825_at           0.994      0.991  0.0115   -6.85943  0.00213  ABHD2          abhydrolase domain containing 2
+201925_s_at        0.994      0.992  0.0102   -6.85944  0.00252  CD55           CD55 molecule (Cromer blood group)
+204971_at          0.994      0.992  0.0103   -6.85944  0.00272  CSTA           cystatin A

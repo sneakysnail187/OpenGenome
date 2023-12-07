@@ -66,99 +66,109 @@
                 <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
                     Plot Your Data
                 </h2>
-                <div class="flex justify-center mt-8">
-                    <div class="relative flex flex-nowrap items-stretch">
-                        <span
-                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                            id="addon-wrapping"
-                            >P Value</span
-                        >
-                        <input
-                            type="text"
-                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
-                            placeholder="0.05 or 0.01 suggested"
-                            aria-label="P-Value"
-                            aria-describedby="addon-wrapping" />
-                    </div>
 
-                </div>
+                <form action = '' method="POST" enctype = "multipart/form-data" name = "pTest"> {% csrf_token %}
+                    <div class="flex justify-center mt-8">
+                        <div class="relative flex flex-nowrap items-stretch">
+                            <span
+                                class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                                id="addon-wrapping"
+                                >P Value</span
+                            >
+                            <input
+                                type="number"
+                                step="any"
+                                name="pValue"
 
-                <div class="text-center mt-6">
-                    <button id="targetGeneListButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" onclick="PTestFunction()">
-                        Run P-Test
-                    </button>
-                </div>
-
-                <div class="flex justify-center mt-8 px-40">
-                    <div class="relative flex flex-nowrap items-stretch">
-                        <span
-                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                            id="addon-wrapping"
-                            >Number of Elements</span
-                        >
-                        <input
-                            type="text"
-                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
-                            placeholder="Insert a positive number < 500"
-                            aria-label="Username"
-                            aria-describedby="addon-wrapping" />
-                    </div>
-                </div>
-                <div class="flex justify-center mt-1 px-30">
-                    <div class="relative flex flex-nowrap items-stretch">
-                        <span
-                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                            id="addon-wrapping"
-                            >Positive, Negative, or Absolute Magnitude?</span
-                        >
-                        <div class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
-                        role="group">
-                            <div class="my-2 flex items-center justify-center">
-                                <label class="inline-flex items-center px-2">
-                                    <input type="radio" class="form-radio" name="radio" value="1">
-                                    <span class="ml-2">Positive</span>
-                                </label>
-                                <label class="inline-flex items-center ml-6 px-2">
-                                    <input type="radio" class="form-radio" name="radio" value="2">
-                                    <span class="ml-2">Negative</span>
-                                </label>
-                                <label class="inline-flex items-center ml-6 px-2">
-                                    <input type="radio" class="form-radio" name="radio" value="3">
-                                    <span class="ml-2">Absolute</span>
-                                </label>
-                            </div>
+                                class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
+                                placeholder="0.05 or 0.01 suggested"
+                                aria-label="P-Value"
+                                aria-describedby="addon-wrapping" />
                         </div>
 
                     </div>
-                </div>    
-                <div class="text-center mt-6">
-                    <button id="greatestMagnituedButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" onclick="analysis3Function()">
-                        Run Greatest Magnitudes Function
-                    </button>
-                </div>
 
-
-                <div class="flex justify-center mt-8 px-24">
-                    <div class="relative flex flex-nowrap items-stretch">
-                        <span
-                            class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                            id="addon-wrapping"
-                            >Target Genes</span
-                        >
-                        <input
-                            type="text"
-                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
-                            placeholder="[Gene1, Gene2, Gene3, ...]"
-                            aria-label="Target-Genes"
-                            aria-describedby="addon-wrapping" />
+                    <div class="text-center mt-6">
+                        <button id="targetGeneListButton" name="button_type" value="pTest" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
+                            Run P-Test
+                        </button>
                     </div>
-                </div>
-                
-                <div class="text-center mt-6">
-                    <button id="targetGeneListButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" onclick="PrintTargetGenesFunction()">
-                        Print Target Gene Data
-                    </button>
-                </div>
+                </form>
+
+                <form action = '' method="POST" enctype = "multipart/form-data" name = "magTest"> {% csrf_token %}
+                    <div class="flex justify-center mt-8 px-40">
+                        <div class="relative flex flex-nowrap items-stretch">
+                            <span
+                                class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                                id="addon-wrapping"
+                                >Number of Elements</span
+                            >
+                            <input
+                                type="number"
+                                name="numElmentsInput"
+                                class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
+                                placeholder="Insert a positive number < 500"
+                                aria-label="Username"
+                                aria-describedby="addon-wrapping" />
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-1 px-30">
+                        <div class="relative flex flex-nowrap items-stretch">
+                            <span
+                                class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                                id="addon-wrapping"
+                                >Positive, Negative, or Absolute Magnitude?</span>
+                            <div class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
+                            role="group" name="magChoice" id="magChoice">
+                                <div class="my-2 flex items-center justify-center">
+                                    <label class="inline-flex items-center px-2">
+                                        <input type="radio" class="form-radio" name="radio" value="1">
+                                        <span class="ml-2">Positive</span>
+                                    </label>
+                                    <label class="inline-flex items-center ml-6 px-2">
+                                        <input type="radio" class="form-radio" name="radio" value="2">
+                                        <span class="ml-2">Negative</span>
+                                    </label>
+                                    <label class="inline-flex items-center ml-6 px-2">
+                                        <input type="radio" class="form-radio" name="radio" value="3">
+                                        <span class="ml-2">Absolute</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>    
+                    <div class="text-center mt-6">
+                        <button id="greatestMagnituedButton" name="button_type" value = "magTest" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
+                            Run Greatest Magnitudes Function
+                        </button>
+                    </div>
+                </form>
+
+                <form action = '' method="POST" enctype = "multipart/form-data" name = "targetTest"> {% csrf_token %}
+                    <div class="flex justify-center mt-8 px-24">
+                        <div class="relative flex flex-nowrap items-stretch">
+                            <span
+                                class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                                id="addon-wrapping"
+                                >Target Genes</span
+                            >
+                            <input
+                                type="text"
+                                name="targetGenes"
+                                class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
+                                placeholder="Gene1, Gene2, Gene3,..."
+                                aria-label="Target-Genes"
+                                aria-describedby="addon-wrapping" />
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <button id="targetGeneListButton" name="button_type" value="targetGene" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" onclick="PrintTargetGenesFunction()">
+                            Print Target Gene Data
+                        </button>
+                    </div>
+                </form>
 
             </section>
 

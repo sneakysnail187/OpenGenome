@@ -4,7 +4,6 @@ from .models import *
 import polls.GenomeAnalysis as g
 from tabulate import tabulate
 
-csvToAnalyze = 'Hello'
 
 #functions for rendering the individual html pages 
 def index(request):
@@ -31,31 +30,43 @@ def postpage(request):
         new_result.save()
     return render(request, 'postpage.html')
 
-csvToAnalyze = ''
+print("we are here")
+class viewer:
+    csvToAnalyze = ''
+    IDList = []
+    AdjP = []
+    PList = []
+    tValues = []
+    BValues = []
+    logFCs = []
+    GeneSymbols = []
+    GeneTitles = []
+    GeneIDs = []
+    FilteredIDs = []
+    FlogFCs = []
+    FGeneSymbols = []
+    tabledata = []
+    pVal = 0.99
+    numElements = 0
+    targetGenesString = ''
+    GenesList = []
+
 
 def upload(request):
+    #                   button name =     value = 
     if request.POST.get("button_type") == "submit_files":
             input_csv = request.FILES['csvFile']
             new_csv = UserCSV(csv = input_csv, name = input_csv.name)
             new_csv.save()
     if request.POST.get("button_type") == "analyze":
-            csvToAnalyze = request.POST['fileName']
-            finString = csvToAnalyze.replace(" ", "_")
+            viewer.csvToAnalyze = request.POST['fileName']
+            finString = viewer.csvToAnalyze.replace(" ", "_")
             #print(finString)
             csvPath = './uploads/SubmittedCSV/' + finString
-            print(csvToAnalyze)
+            print(viewer.csvToAnalyze)
             #print(g.showPath(csvPath))
-            IDList,AdjP,PList,tValues,BValues,logFCs,GeneSymbols,GeneTitles,GeneIDs = g.loadCSV(csvPath)
-            pngString = finString.replace(".csv",".png")
-            pngPath = "./uploads/Plots/" + pngString
-            FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles, tabledata = g.plotPFilteredlogs(0.99,IDList,PList,logFCs,GeneSymbols,GeneTitles, pngPath)
-            head = ["ID","logFC","Gene Symbols","Gene Titles"]
-            #print(tabulate(tabledata, headers=head))
-            tableName = "uploads/Tables/" + finString.replace(".csv", ".txt")
+            viewer.IDList,viewer.AdjP,viewer.PList,viewer.tValues,viewer.BValues,viewer.logFCs,viewer.GeneSymbols,viewer.GeneTitles,viewer.GeneIDs = g.loadCSV(csvPath)
             
-            with open(tableName, 'w') as f:
-                 f.write(tabulate(tabledata, headers = head))
-                 f.close()
             
 
             
@@ -72,10 +83,68 @@ def results(request):
     return render(request, 'results.html')
 
 def analytics(request):
-     context = {"csvName" : csvToAnalyze}
-     print(csvToAnalyze)
-     return render(request, 'analytics.html', context)
+    #fileNames = UserCSV.objects.all().distinct()
+
+    #finString = viewer.csvToAnalyze.replace(" ", "_")
+    #pngString = finString.replace(".csv",".png")
+    #pngPath = "./uploads/Plots/" + pngString
+    #viewer.FilteredIDs, viewer.FlogFCs, viewer.FGeneSymbols, viewer.FGeneTitles, viewer.tabledata = g.plotPFilteredlogs(0.99,viewer.IDList,viewer.PList,viewer.logFCs,viewer.GeneSymbols,viewer.GeneTitles, pngPath)
+    #head = ["ID","logFC","Gene Symbols","Gene Titles"]
+    #tableName = "uploads/Tables/" + finString.replace(".csv", ".txt")
+    
+    #with open(tableName, 'w') as f:
+       # f.write(tabulate(viewer.tabledata, headers = head))
+       # f.close()
+
+# POST --> grab the images --> viewer
+# if exists pos.png --> render image
+    #for magTest
+    if request.method == 'POST':
+        if request.POST.get("button_type") =="pTest":
+            viewer.pVal = float(request.POST.get('pValue'))
+            finString = viewer.csvToAnalyze.replace(" ", "_")
+            pngString = finString.replace(".csv",".png")
+            pngPath = "./uploads/Plots/" + pngString
+            viewer.FilteredIDs, viewer.FlogFCs, viewer.FGeneSymbols, viewer.FGeneTitles, viewer.tabledata = g.plotPFilteredlogs(viewer.pVal,viewer.IDList,viewer.PList,viewer.logFCs,viewer.GeneSymbols,viewer.GeneTitles, pngPath)
+            head = ["ID","logFC","Gene Symbols","Gene Titles"]
+            tableName = "uploads/Tables/" + finString.replace(".csv", "Test.txt")
+            with open(tableName, 'w') as f:
+                 f.write(tabulate(viewer.tabledata, headers = head))
+                 f.close()
+        if request.POST.get("button_type")=='magTest':
+            finString = viewer.csvToAnalyze.replace(" ", "_")
+            viewer.numElements = int(request.POST.get('numElmentsInput'))
+            if request.POST.get('radio') == '1':
+                notsaveDestination=finString.replace(".csv","MagTest1.png")
+                saveDestination = "./uploads/Plots/"+ notsaveDestination
+                g.logMag(1, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
+            if request.POST.get("radio") == "2":
+                notsaveDestination=finString.replace(".csv","MagTest2.png")
+                saveDestination = "./uploads/Plots/"+ notsaveDestination
+                g.logMag(2, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
+            if request.POST.get("radio") == "3":
+                notsaveDestination=finString.replace(".csv","MagTest3.png")
+                saveDestination = "./uploads/Plots/"+ notsaveDestination
+                g.logMag(3, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
+        if request.POST.get("button_type") == 'targetGene':
+             finString = viewer.csvToAnalyze.replace(" ", "_")
+             savePlace = finString.replace(".csv","FinalSet.png")
+             viewer.targetGenesString = request.POST.get('targetGenes')
+             viewer.GenesList = list(viewer.targetGenesString.split(", "))
+             viewer.interesttable = g.shortCSV(viewer.GenesList,viewer.IDList,viewer.GeneSymbols,viewer.logFCs,viewer.GeneTitles,viewer.AdjP,viewer.PList,viewer.tValues,viewer.BValues,savePlace)
+             interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
+             interesttableName = "uploads/Tables/" + finString.replace(".csv", "Test2.txt")
+             with open(interesttableName, 'w') as fi:
+                 fi.write(tabulate(viewer.interesttable, headers=interesthead))
+                 fi.close()
+
+#
+#
+#
+    context = {"csvName" : viewer.csvToAnalyze}
+    #print(viewer.csvToAnalyze)
+    return render(request, 'analytics.html', context)
 
 
-#results needs to pull from db, where postpage uploads to db
-#   urlName = 'http://127.0.0.1:8000' + submittedCsvFileNames[x] <!-- x here is the index chosen from the dropdown bar-->
+    #results needs to pull from db, where postpage uploads to db
+    #   urlName = 'http://127.0.0.1:8000' + submittedCsvFileNames[x] <!-- x here is the index chosen from the dropdown bar-->

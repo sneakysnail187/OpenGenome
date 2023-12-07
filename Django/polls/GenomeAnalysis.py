@@ -1,11 +1,10 @@
-import pandas as pd
+import csv
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 #savefigpath = "./uploads/plots/PFilteredLogFC.png"
 #savefigpath2 = "./uploads/plots/LargestLogFCs.png"
 #savefigpath3 = "./uploads/plots/InterestLogFCs.png"
 def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs csv path
-    df = pd.read_csv(csvpath)#replace filepath
     IDList = []
     AdjP = []
     PList = []
@@ -15,15 +14,19 @@ def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs csv path
     GeneSymbols = []
     GeneTitles = []
     GeneIDs = []
-    IDList = df['ID'].tolist()
-    AdjP = df['adj.P.Val'].tolist()
-    PList = df['P.Value'].tolist()
-    tValues = df['t'].tolist()
-    BValues = df['B'].tolist()
-    logFCs = df['logFC'].tolist()
-    GeneSymbols = df['Gene.symbol'].tolist()
-    GeneTitles = df['Gene.title'].tolist()
-    GeneIDs = df['Gene.ID'].tolist()
+    with open(csvpath, newline='') as cfile: ##replace filepath
+        genomedata = csv.DictReader(cfile)
+        for row in genomedata:
+            if (row['Gene.symbol']!=""):
+                IDList.append(row['ID'])
+                AdjP.append(float(row['adj.P.Val']))
+                PList.append(float(row['P.Value']))
+                tValues.append(float(row['t']))
+                BValues.append(float(row['B']))
+                logFCs.append(float(row['logFC']))
+                GeneSymbols.append(row['Gene.symbol'])
+                GeneTitles.append(row['Gene.title'])
+                GeneIDs.append(row['Gene.ID'])
     return IDList,AdjP,PList,tValues,BValues,logFCs,GeneSymbols,GeneTitles,GeneIDs
     
 
@@ -38,27 +41,27 @@ def plotPFilteredlogs(pDesired, IDList, PList, logFCs, GeneSymbols, GeneTitles, 
             FlogFCs.append(logFCs[p])
             FGeneSymbols.append(GeneSymbols[p])
             FGeneTitles.append(GeneTitles[p])
+    plt.figure()
     plt.bar(FilteredIDs, FlogFCs, width = 0.4)
     plt.title("P-Filtered Genomes")
     plt.xlabel("ID")
     plt.ylabel("logFC")
-    #plt.show()
     plt.savefig(fileLocation)
     tabledata = []
     for i in range(len(FilteredIDs)):
         tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
     return FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles, tabledata
 
-def logMag(menuOption, num, FlogFCs, tabledata):
-    if (menuOption==1):
-        greatestMag(num, FlogFCs, tabledata)
-    if (menuOption==2):
-        negLogs(num, FlogFCs, tabledata)
+def logMag(menuOption, num, FlogFCs, tabledata, saveDestination):
     if (menuOption==3):
-        posLogs(num, FlogFCs, tabledata)
+        greatestMag(num, FlogFCs, tabledata,saveDestination)
+    if (menuOption==2):
+        negLogs(num, FlogFCs, tabledata,saveDestination)
+    if (menuOption==1):
+        posLogs(num, FlogFCs, tabledata,saveDestination)
 
-def greatestMag(num, FlogFCs, tabledata):
-    logssorted = sorted(FlogFCs)[:(num/2)]+sorted(FlogFCs)[-(num/2):]
+def greatestMag(num, FlogFCs, tabledata,saveDestination):
+    logssorted = sorted(FlogFCs)[:num]+sorted(FlogFCs)[-num:]
     SortedIDs = []
     for i in range(len(logssorted)):
         for j in range(len(tabledata)):
@@ -66,15 +69,16 @@ def greatestMag(num, FlogFCs, tabledata):
                 print(tabledata[j][0],"added")
                 SortedIDs.append(tabledata[j][0])
                 break
+    plt.figure()
     plt.bar(SortedIDs,logssorted)
     plt.title("Genomes with largest magnitude logFC values")
     plt.xticks(fontsize=5)
     plt.xlabel("ID")
     plt.ylabel("logFC")
-    plt.show()
+    plt.savefig(saveDestination)
 
-def negLogs(num, FlogFCs, tabledata):
-    logssorted = sorted(FlogFCs)[:(num/2)]
+def negLogs(num, FlogFCs, tabledata,saveDestination):
+    logssorted = sorted(FlogFCs)[:num]
     SortedIDs = []
     for i in range(len(logssorted)):
         for j in range(len(tabledata)):
@@ -82,16 +86,16 @@ def negLogs(num, FlogFCs, tabledata):
                 print(tabledata[j][0],"added")
                 SortedIDs.append(tabledata[j][0])
                 break
+    plt.figure()
     plt.bar(SortedIDs,logssorted)
     plt.title("Genomes with largest negative logFC values")
     plt.xticks(fontsize=5)
     plt.xlabel("ID")
     plt.ylabel("logFC")
-    plt.show()
-    #plt.savefig(savefigpath2)
+    plt.savefig(saveDestination)
 
-def posLogs(num, FlogFCs, tabledata):
-    logssorted = sorted(FlogFCs)[-(num/2):]
+def posLogs(num, FlogFCs, tabledata,saveDestination):
+    logssorted = sorted(FlogFCs)[-num:]
     SortedIDs = []
     for i in range(len(logssorted)):
         for j in range(len(tabledata)):
@@ -99,15 +103,15 @@ def posLogs(num, FlogFCs, tabledata):
                 print(tabledata[j][0],"added")
                 SortedIDs.append(tabledata[j][0])
                 break
+    plt.figure()
     plt.bar(SortedIDs,logssorted)
-    plt.title("Genomes with largest negative logFC values")
+    plt.title("Genomes with largest positive logFC values")
     plt.xticks(fontsize=5)
     plt.xlabel("ID")
     plt.ylabel("logFC")
-    plt.show()
-    #plt.savefig(savefigpath2)
+    plt.savefig(saveDestination)
 
-def shortCSV(IDInput, IDList, GeneSymbols, logFCs, GeneTitles, AdjP, PList, tValues, BValues): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
+def shortCSV(IDInput, IDList, GeneSymbols, logFCs, GeneTitles, AdjP, PList, tValues, BValues,savePlace): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
     SortedGenes = []
     SortedTitles = []
     logssorted = []
@@ -126,15 +130,15 @@ def shortCSV(IDInput, IDList, GeneSymbols, logFCs, GeneTitles, AdjP, PList, tVal
                 FtValues.append(tValues[j])
                 FBValues.append(BValues[j])
                 break
+    print(SortedGenes)
+    plt.figure()
     plt.bar(SortedGenes,logssorted)
     plt.title("Interest Gene logFCs")
     plt.xlabel("Gene.Symbol")
     plt.xticks(fontsize=8)
     plt.ylabel("logFC")
-    plt.show()
-    #plt.savefig(savefigpath3)
+    plt.savefig(savePlace)
     completeinterestset = []
     for i in range(len(IDInput)):
         completeinterestset.append([IDInput[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])
-    interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
-    print(tabulate(completeinterestset, headers=interesthead))
+    return completeinterestset
