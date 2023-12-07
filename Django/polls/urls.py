@@ -7,5 +7,6 @@ urlpatterns = [
     path("about.html", views.about, name = "about"),
     path("postpage.html", views.postpage, name = "postpage"),
     path("upload.html", views.upload, name = "upload"),
-    path("results.html", views.results, name = "results")
+    path("results.html", views.results, name = "results"),
+    path("analytics.html", views.analytics, name = "analytics")
 ]

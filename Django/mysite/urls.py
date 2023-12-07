@@ -28,5 +28,6 @@ urlpatterns = [
     path("results.html", views.results),
     path("about.html", views.about),
     path("postpage.html", views.postpage),
-    path("upload.html", views.upload)
+    path("upload.html", views.upload),
+    path("analytics.html", views.analytics)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

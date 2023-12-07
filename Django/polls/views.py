@@ -10,6 +10,9 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+def analytics(request):
+    return render(request, 'analytics.html')
+
 def postpage(request):
     if request.method == 'POST':
         #grabs all the stuff from the html form
