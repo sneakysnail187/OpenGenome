@@ -28,7 +28,6 @@ sortedtabledata = []
 savefigpath = "PFilteredLogFC.png"
 savefigpath2 = "LargestLogFCs.png"
 savefigpath3 = "InterestLogFCs.png"
-print(getPath())
 async def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs csv path
     df = pd.read_csv(csvpath)#replace filepath
     IDList = []
