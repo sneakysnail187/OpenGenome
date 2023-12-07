@@ -29,6 +29,10 @@ def postpage(request):
     return render(request, 'postpage.html')
 
 csvToAnalyze = ''
+csvPath = '/SubmittedCSV/' + csvToAnalyze
+
+def getPath():
+     return csvPath
 def upload(request):
     if request.POST.get("button_type") == "submit_files":
             input_csv = request.FILES['csvFile']

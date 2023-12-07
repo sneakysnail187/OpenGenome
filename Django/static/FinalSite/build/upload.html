@@ -150,8 +150,8 @@
                 savefigpath2 = "LargestLogFCs.png"
                 savefigpath3 = "InterestLogFCs.png"
 
-                async def loadCSV(): #initial csv insert, tied to open analysis, needs csv path
-                    df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
+                async def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs csv path
+                    df = pd.read_csv(csvpath)#replace filepath
                     IDList = []
                     AdjP = []
                     PList = []
@@ -254,8 +254,8 @@
                     plt.show()
                     plt.savefig(savefigpath2)
 
-                async def shortCSV(): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
-                    df = pd.read_csv('Data%20from%20GEO2R%20-%20One%20Experimental%20Group.csv')#replace filepath
+                async def shortCSV(csvpath): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
+                    df = pd.read_csv(csvpath)#replace filepath
                     SortedIDs = []
                     SortedGenes = []
                     SortedTitles = []
