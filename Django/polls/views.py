@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-import polls.global_ as g
+import polls.GenomeAnalysis as g
+from tabulate import tabulate
+import os
+import shutil
 
 #functions for rendering the individual html pages 
 def index(request):
@@ -29,10 +32,6 @@ def postpage(request):
     return render(request, 'postpage.html')
 
 csvToAnalyze = ''
-csvPath = '/SubmittedCSV/' + csvToAnalyze
-
-def getPath():
-     return csvPath
 def upload(request):
     if request.POST.get("button_type") == "submit_files":
             input_csv = request.FILES['csvFile']
@@ -40,7 +39,25 @@ def upload(request):
             new_csv.save()
     if request.POST.get("button_type") == "analyze":
             csvToAnalyze = request.POST['fileName']
-            print(csvToAnalyze)
+            finString = csvToAnalyze.replace(" ", "_")
+            #print(finString)
+            csvPath = './uploads/SubmittedCSV/' + finString
+            #print(csvToAnalyze)
+            #print(g.showPath(csvPath))
+            IDList,AdjP,PList,tValues,BValues,logFCs,GeneSymbols,GeneTitles,GeneIDs = g.loadCSV(csvPath)
+            pngString = finString.replace(".csv",".png")
+            pngPath = "./uploads/Plots/" + pngString
+            FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles, tabledata = g.plotPFilteredlogs(0.99,IDList,PList,logFCs,GeneSymbols,GeneTitles, pngPath)
+            head = ["ID","logFC","Gene Symbols","Gene Titles"]
+            print(tabulate(tabledata, headers=head))
+            tableName = "uploads/Tables/" + finString.replace(".csv", ".txt")
+            
+            with open(tableName, 'w') as f:
+                 f.write(tabulate(tabledata, headers = head))
+                 f.close()
+
+            
+
     #context dictionary for dropdown menu
     fileNames = UserCSV.objects.all().distinct()
     #for name in fileNames:

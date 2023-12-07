@@ -1,34 +1,10 @@
 import pandas as pd
 from tabulate import tabulate
 import matplotlib.pyplot as plt
-IDList = []
-AdjP = []
-PList = []
-tValues = []
-BValues = []
-logFCs = []
-GeneSymbols = []
-GeneTitles = []
-GeneIDs = []
-FilteredIDs = []
-FlogFCs = []
-FGeneSymbols = []
-FGeneTitles = []
-tabledata = []
-SortedIDs = []
-SortedGenes = []
-SortedTitles = []
-logssorted = []
-completeinterestset = []
-FAdjP = []
-FPList = []
-FtValues = []
-FBValues = []
-sortedtabledata = []
-savefigpath = "PFilteredLogFC.png"
-savefigpath2 = "LargestLogFCs.png"
-savefigpath3 = "InterestLogFCs.png"
-async def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs csv path
+#savefigpath = "./uploads/plots/PFilteredLogFC.png"
+#savefigpath2 = "./uploads/plots/LargestLogFCs.png"
+#savefigpath3 = "./uploads/plots/InterestLogFCs.png"
+def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs csv path
     df = pd.read_csv(csvpath)#replace filepath
     IDList = []
     AdjP = []
@@ -51,7 +27,7 @@ async def loadCSV(csvpath): #initial csv insert, tied to open analysis, needs cs
     return IDList,AdjP,PList,tValues,BValues,logFCs,GeneSymbols,GeneTitles,GeneIDs
     
 
-async def plotPFilteredlogs(pDesired, IDList, PList, logFCs, GeneSymbols, GeneTitles):
+def plotPFilteredlogs(pDesired, IDList, PList, logFCs, GeneSymbols, GeneTitles, fileLocation):
     FilteredIDs = []
     FlogFCs = []
     FGeneSymbols = []
@@ -66,24 +42,22 @@ async def plotPFilteredlogs(pDesired, IDList, PList, logFCs, GeneSymbols, GeneTi
     plt.title("P-Filtered Genomes")
     plt.xlabel("ID")
     plt.ylabel("logFC")
-    plt.show()
-    plt.savefig(savefigpath)
+    #plt.show()
+    plt.savefig(fileLocation)
     tabledata = []
     for i in range(len(FilteredIDs)):
         tabledata.append([FilteredIDs[i],FlogFCs[i],FGeneSymbols[i],FGeneTitles[i]])
-    head = ["ID","logFC","Gene Symbols","Gene Titles"]
-    print(tabulate(tabledata, headers=head))
-    return FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles
+    return FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles, tabledata
 
-async def logMag(menuOption, num):
+def logMag(menuOption, num, FlogFCs, tabledata):
     if (menuOption==1):
-        greatestMag(num)
+        greatestMag(num, FlogFCs, tabledata)
     if (menuOption==2):
-        negLogs(num)
+        negLogs(num, FlogFCs, tabledata)
     if (menuOption==3):
-        posLogs(num)
+        posLogs(num, FlogFCs, tabledata)
 
-async def greatestMag(num):
+def greatestMag(num, FlogFCs, tabledata):
     logssorted = sorted(FlogFCs)[:(num/2)]+sorted(FlogFCs)[-(num/2):]
     SortedIDs = []
     for i in range(len(logssorted)):
@@ -98,9 +72,8 @@ async def greatestMag(num):
     plt.xlabel("ID")
     plt.ylabel("logFC")
     plt.show()
-    plt.savefig(savefigpath2)
 
-async def negLogs(num):
+def negLogs(num, FlogFCs, tabledata):
     logssorted = sorted(FlogFCs)[:(num/2)]
     SortedIDs = []
     for i in range(len(logssorted)):
@@ -115,9 +88,9 @@ async def negLogs(num):
     plt.xlabel("ID")
     plt.ylabel("logFC")
     plt.show()
-    plt.savefig(savefigpath2)
+    #plt.savefig(savefigpath2)
 
-async def posLogs(num):
+def posLogs(num, FlogFCs, tabledata):
     logssorted = sorted(FlogFCs)[-(num/2):]
     SortedIDs = []
     for i in range(len(logssorted)):
@@ -132,9 +105,9 @@ async def posLogs(num):
     plt.xlabel("ID")
     plt.ylabel("logFC")
     plt.show()
-    plt.savefig(savefigpath2)
+    #plt.savefig(savefigpath2)
 
-async def shortCSV(IDInput): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
+def shortCSV(IDInput, IDList, GeneSymbols, logFCs, GeneTitles, AdjP, PList, tValues, BValues): #this should be reserved for user filtered csvs, prints out the Interest gene logs and tabluates full set 
     SortedGenes = []
     SortedTitles = []
     logssorted = []
@@ -159,7 +132,7 @@ async def shortCSV(IDInput): #this should be reserved for user filtered csvs, pr
     plt.xticks(fontsize=8)
     plt.ylabel("logFC")
     plt.show()
-    plt.savefig(savefigpath3)
+    #plt.savefig(savefigpath3)
     completeinterestset = []
     for i in range(len(IDInput)):
         completeinterestset.append([IDInput[i],FAdjP[i],FPList[i],FtValues[i],FBValues[i],logssorted[i],SortedGenes[i],SortedTitles[i]])

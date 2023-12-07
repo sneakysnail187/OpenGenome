@@ -1,0 +1,163 @@
+ID                logFC  Gene Symbols                               Gene Titles
+------------  ---------  -----------------------------------------  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+242678_at      0.00076   nan                                        nan
+206412_at      0.00105   FER                                        FER tyrosine kinase
+1557876_at    -0.00101   LINC01020                                  long intergenic non-protein coding RNA 1020
+63825_at       0.00213   ABHD2                                      abhydrolase domain containing 2
+232235_at     -0.00251   DSEL                                       dermatan sulfate epimerase-like
+1566805_at     0.000589  nan                                        nan
+210364_at      0.000819  SCN2B                                      sodium voltage-gated channel beta subunit 2
+226872_at     -0.00252   RFX2                                       regulatory factor X2
+242332_at     -0.00074   FENDRR                                     FOXF1 adjacent non-coding developmental regulatory RNA
+227028_s_at    0.000765  DGCR2                                      DiGeorge syndrome critical region gene 2
+1555883_s_at   0.000769  SPIN3                                      spindlin family member 3
+212780_at     -0.000778  SOS1                                       SOS Ras/Rac guanine nucleotide exchange factor 1
+217580_x_at    0.000762  nan                                        nan
+220555_s_at    0.000821  PDZD7                                      PDZ domain containing 7
+220724_at      0.000486  CWH43                                      cell wall biogenesis 43 C-terminal homolog
+1558579_at     0.000929  FLJ37786                                   uncharacterized LOC642691
+207491_at      0.000692  MOGAT2                                     monoacylglycerol O-acyltransferase 2
+229032_at      0.0021    WSCD2                                      WSC domain containing 2
+222119_s_at    0.000572  FBXO11                                     F-box protein 11
+1560765_a_at   0.00071   ARHGAP22                                   Rho GTPase activating protein 22
+222378_at      0.00362   nan                                        nan
+241270_at     -0.00103   nan                                        nan
+231909_x_at   -0.00151   ODF2L                                      outer dense fiber of sperm tails 2 like
+225752_at      0.000964  NIPA1                                      non imprinted in Prader-Willi/Angelman syndrome 1
+235250_at      0.000726  FLCN                                       folliculin
+208023_at     -0.000674  TNFRSF4                                    TNF receptor superfamily member 4
+203108_at     -0.00264   GPRC5A                                     G protein-coupled receptor class C group 5 member A
+235072_s_at   -0.00147   KIF13A                                     kinesin family member 13A
+220219_s_at   -0.000952  LRRC37A2///LRRC37A3///LRRC37A4P///LRRC37A  leucine rich repeat containing 37 member A2///leucine rich repeat containing 37 member A3///leucine rich repeat containing 37 member A4, pseudogene///leucine rich repeat containing 37A
+206812_at      0.000589  ADRB3                                      adrenoceptor beta 3
+229478_x_at   -0.00053   BIVM                                       basic, immunoglobulin-like variable motif containing
+243149_at      0.00196   nan                                        nan
+1565783_at    -0.000546  nan                                        nan
+242625_at     -0.00349   RSAD2                                      radical S-adenosyl methionine domain containing 2
+1561911_at     0.000497  nan                                        nan
+204971_at      0.00272   CSTA                                       cystatin A
+205519_at      0.000768  WDR76                                      WD repeat domain 76
+201925_s_at    0.00252   CD55                                       CD55 molecule (Cromer blood group)
+238621_at     -0.00075   FMN1                                       formin 1
+214883_at     -0.000672  THRA                                       thyroid hormone receptor, alpha
+243215_at      0.000666  nan                                        nan
+209811_at     -0.0009    CASP2                                      caspase 2
+228359_at     -0.000885  UBASH3B                                    ubiquitin associated and SH3 domain containing B
+213990_s_at    0.000788  PAK5                                       p21 (RAC1) activated kinase 5
+239317_at     -0.00143   nan                                        nan
+212141_at      0.000798  MCM4                                       minichromosome maintenance complex component 4
+1558807_at     0.000587  ATAD2B                                     ATPase family, AAA domain containing 2B
+1560690_at    -0.000558  LINC01153                                  long intergenic non-protein coding RNA 1153
+200821_at      0.000637  LAMP2                                      lysosomal associated membrane protein 2
+243466_at      0.00044   nan                                        nan
+226238_at     -0.00086   MCEE                                       methylmalonyl-CoA epimerase
+202174_s_at    0.000609  PCM1                                       pericentriolar material 1
+238446_at      0.00101   NAIP                                       NLR family apoptosis inhibitory protein
+217047_s_at   -0.0011    FAM13A                                     family with sequence similarity 13 member A
+216052_x_at    0.000576  ARTN                                       artemin
+240756_at     -0.000482  nan                                        nan
+239421_at     -0.000555  DLGAP1-AS1                                 DLGAP1 antisense RNA 1
+220805_at     -0.000467  HRH2                                       histamine receptor H2
+216914_at     -0.000562  CDC25C                                     cell division cycle 25C
+222539_at     -0.000721  CLN6                                       ceroid-lipofuscinosis, neuronal 6, late infantile, variant
+203913_s_at    0.00209   HPGD                                       hydroxyprostaglandin dehydrogenase 15-(NAD)
+218571_s_at    0.000443  CHMP4A///TM9SF1                            charged multivesicular body protein 4A///transmembrane 9 superfamily member 1
+205492_s_at   -0.000652  DPYSL4                                     dihydropyrimidinase like 4
+200697_at     -0.000718  HK1                                        hexokinase 1
+1555186_at    -0.000372  nan                                        nan
+1553663_a_at  -0.000423  NPB                                        neuropeptide B
+244284_at     -0.000465  nan                                        nan
+210601_at      0.000505  CDH6                                       cadherin 6
+238094_at     -0.000414  LOC101928728                               uncharacterized LOC101928728
+1555441_at     0.000465  UBA6                                       ubiquitin like modifier activating enzyme 6
+222406_s_at   -0.000894  PNRC2                                      proline rich nuclear receptor coactivator 2
+232220_at      0.000918  S100A7A                                    S100 calcium binding protein A7A
+239002_at     -0.00074   ASPM                                       abnormal spindle microtubule assembly
+239447_at      0.00037   TRA2B                                      transformer 2 beta homolog (Drosophila)
+240231_at     -0.00128   nan                                        nan
+231853_at      0.000841  TUBD1                                      tubulin delta 1
+221529_s_at   -0.0012    PLVAP                                      plasmalemma vesicle associated protein
+209390_at     -0.000538  TSC1                                       tuberous sclerosis 1
+1562617_at     0.000376  LOC340074                                  uncharacterized LOC340074
+218253_s_at    0.000432  EIF2D                                      eukaryotic translation initiation factor 2D
+238053_at      0.000671  DHRSX                                      dehydrogenase/reductase X-linked
+239158_at     -0.000311  nan                                        nan
+242634_at     -0.000473  GATAD1                                     GATA zinc finger domain containing 1
+203304_at      0.00125   BAMBI                                      BMP and activin membrane bound inhibitor
+1562944_at    -0.000342  LOC101928160///ZNF707                      uncharacterized LOC101928160///zinc finger protein 707
+231965_at     -0.00054   PCED1A                                     PC-esterase domain containing 1A
+1565644_at    -0.000442  LOC143286                                  uncharacterized LOC143286
+210092_at     -0.000467  MAGOHB///MAGOH                             mago homolog B, exon junction complex core component///mago homolog, exon junction complex core component
+226938_at      0.000362  DCAF4                                      DDB1 and CUL4 associated factor 4
+231528_at      0.000453  LOC102725068                               uncharacterized LOC102725068
+210798_x_at   -0.000296  MASP2                                      mannan binding lectin serine peptidase 2
+243831_at      0.000322  MAPK6                                      mitogen-activated protein kinase 6
+1556659_at    -0.000364  nan                                        nan
+214095_at     -0.000512  SHMT2                                      serine hydroxymethyltransferase 2
+221990_at      0.000351  PAX8                                       paired box 8
+217163_at      0.00028   ESR1                                       estrogen receptor 1
+235296_at     -0.000716  EIF5A2                                     eukaryotic translation initiation factor 5A2
+41553_at      -0.000206  OSGIN2                                     oxidative stress induced growth inhibitor family member 2
+226905_at      0.00113   FAM101B                                    family with sequence similarity 101 member B
+222948_s_at    0.000252  MRPS18C                                    mitochondrial ribosomal protein S18C
+243635_at     -0.000421  DNAJC10                                    DnaJ heat shock protein family (Hsp40) member C10
+1567297_at     0.000222  OR13C4                                     olfactory receptor family 13 subfamily C member 4
+208787_at     -0.000355  MRPL3                                      mitochondrial ribosomal protein L3
+209204_at     -0.000587  LMO4                                       LIM domain only 4
+229350_x_at    0.000394  PARP10                                     poly(ADP-ribose) polymerase family member 10
+222795_s_at   -0.000261  PLCXD1                                     phosphatidylinositol specific phospholipase C X domain containing 1
+1568803_at     0.000231  nan                                        nan
+223918_at     -0.00032   ACSL6                                      acyl-CoA synthetase long-chain family member 6
+234251_at      0.000261  nan                                        nan
+201344_at     -0.00032   UBE2D2                                     ubiquitin conjugating enzyme E2 D2
+237131_at      0.000214  RIIAD1                                     regulatory subunit of type II PKA R-subunit (RIIa) domain containing 1
+212706_at      0.000742  LOC102724229///RASA4B///RASA4              uncharacterized LOC102724229///RAS p21 protein activator 4B///RAS p21 protein activator 4
+205544_s_at   -0.000601  CR2                                        complement component 3d receptor 2
+231446_at     -0.000214  LOC101928162                               uncharacterized LOC101928162
+242536_at     -0.000187  nan                                        nan
+210278_s_at    0.000362  AP4S1                                      adaptor related protein complex 4 sigma 1 subunit
+1558845_at    -0.000273  nan                                        nan
+1568755_a_at   0.000187  LOC101927814                               uncharacterized LOC101927814
+211878_at      0.000417  nan                                        nan
+1563465_at    -0.000106  PKD1L1                                     polycystin 1 like 1, transient receptor potential channel interacting
+210523_at     -0.000213  BMPR1B                                     bone morphogenetic protein receptor type 1B
+223139_s_at    0.000201  DHX36                                      DEAH-box helicase 36
+220708_at      0.000213  nan                                        nan
+227785_at     -0.000251  SDCCAG8                                    serologically defined colon cancer antigen 8
+203201_at     -0.000299  PMM2                                       phosphomannomutase 2
+234314_at      0.00016   RALGAPA2                                   Ral GTPase activating protein catalytic alpha subunit 2
+235164_at     -0.000308  ZNF25                                      zinc finger protein 25
+221566_s_at    0.000305  NOL3                                       nucleolar protein 3
+205707_at     -0.000287  IL17RA                                     interleukin 17 receptor A
+243111_at      0.000189  nan                                        nan
+215371_at     -0.000272  MED27                                      mediator complex subunit 27
+208564_at      0.000174  KCNA2                                      potassium voltage-gated channel subfamily A member 2
+241509_at     -0.000276  nan                                        nan
+209884_s_at    0.000267  SLC4A7                                     solute carrier family 4 member 7
+215967_s_at    0.000279  LY9                                        lymphocyte antigen 9
+235269_at      0.000123  FAM83F                                     family with sequence similarity 83 member F
+1570465_at     0.000101  nan                                        nan
+236943_at     -0.000107  nan                                        nan
+202413_s_at    0.000106  USP1                                       ubiquitin specific peptidase 1
+208384_s_at    0.000102  MID2                                       midline 2
+1553842_at    -9.12e-05  BEND2                                      BEN domain containing 2
+230717_at     -0.000123  LCN12                                      lipocalin 12
+200977_s_at    9.32e-05  TAX1BP1                                    Tax1 binding protein 1
+207157_s_at    0.000119  GNG5                                       G protein subunit gamma 5
+1562511_at    -0.00011   LYST                                       lysosomal trafficking regulator
+225578_at      0.000119  MZT1                                       mitotic spindle organizing protein 1
+213085_s_at    0.000114  WWC1                                       WW and C2 domain containing 1
+235564_at      0.000178  ZNF117                                     zinc finger protein 117
+240947_at     -7.36e-05  ANO6                                       anoctamin 6
+239809_at      0.00022   nan                                        nan
+1570219_at     5.75e-05  LOXL4                                      lysyl oxidase like 4
+223783_s_at    4.72e-05  DBIL5P                                     diazepam binding inhibitor-like 5, pseudogene
+224548_at     -5.49e-05  HES7                                       hes family bHLH transcription factor 7
+206392_s_at    0.000268  RARRES1                                    retinoic acid receptor responder 1
+234257_at      3.6e-05   TNS3                                       tensin 3
+236615_at     -4.55e-05  nan                                        nan
+239033_at     -2.67e-05  nan                                        nan
+216058_s_at   -4.87e-06  CYP2C19                                    cytochrome P450 family 2 subfamily C member 19
+204962_s_at   -5.89e-06  SLC35F6///CENPA                            solute carrier family 35 member F6///centromere protein A
+211604_x_at    5.9e-07   HAP1                                       huntingtin associated protein 1
+227595_at      1.51e-07  ZMYM6                                      zinc finger MYM-type containing 6
