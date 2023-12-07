@@ -75,8 +75,9 @@
                 <div class="flex justify-center mt-8">
                     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
                     <select name ="fileName" id = "name" >
+                            <option value= "1">Files Loaded </option>
                             {% for name in names %}
-                             <option value= "1">Files Loaded </option>
+                            
                              <option value = "{{name}}">{{name}}</option>
                             {% endfor %}
                             <!--<option value="2">No files available</option>
@@ -96,19 +97,9 @@
                         Refresh
                     </button>
                     <!-- form action can send form data to a url once submitted-->
-                
-                    <button name="button_type" value="analyze" id="analyzeButton" type="submit" href="{% static 'templates/analytics.html' %}" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="openAnalysis">
-                        Analyze
-                    </button>
-                    <script type="text/javascript">
-                        function getOption() {
-                            selectElement = 
-                                  document.querySelector('#name');
-                            output = 
-                                  selectElement.options[selectElement.selectedIndex].value;
-                            document.querySelector('.output').textContent = output;
-                        }
-                    </script>
+                        <button name="button_type" value="analyze" id="analyzeButton" type="submit"  class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
+                            Analyze
+                        </button>
                 </div></form>
 
             </section>
