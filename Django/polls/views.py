@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from .models import *
 import polls.GenomeAnalysis as g
 from tabulate import tabulate
-import os
-import shutil
+
+csvToAnalyze = 'Hello'
 
 #functions for rendering the individual html pages 
 def index(request):
@@ -32,6 +32,7 @@ def postpage(request):
     return render(request, 'postpage.html')
 
 csvToAnalyze = ''
+
 def upload(request):
     if request.POST.get("button_type") == "submit_files":
             input_csv = request.FILES['csvFile']
@@ -42,19 +43,20 @@ def upload(request):
             finString = csvToAnalyze.replace(" ", "_")
             #print(finString)
             csvPath = './uploads/SubmittedCSV/' + finString
-            #print(csvToAnalyze)
+            print(csvToAnalyze)
             #print(g.showPath(csvPath))
             IDList,AdjP,PList,tValues,BValues,logFCs,GeneSymbols,GeneTitles,GeneIDs = g.loadCSV(csvPath)
             pngString = finString.replace(".csv",".png")
             pngPath = "./uploads/Plots/" + pngString
             FilteredIDs, FlogFCs, FGeneSymbols, FGeneTitles, tabledata = g.plotPFilteredlogs(0.99,IDList,PList,logFCs,GeneSymbols,GeneTitles, pngPath)
             head = ["ID","logFC","Gene Symbols","Gene Titles"]
-            print(tabulate(tabledata, headers=head))
+            #print(tabulate(tabledata, headers=head))
             tableName = "uploads/Tables/" + finString.replace(".csv", ".txt")
             
             with open(tableName, 'w') as f:
                  f.write(tabulate(tabledata, headers = head))
                  f.close()
+            
 
             
 
@@ -69,6 +71,10 @@ def upload(request):
 def results(request):
     return render(request, 'results.html')
 
+def analytics(request):
+     context = {"csvName" : csvToAnalyze}
+     print(csvToAnalyze)
+     return render(request, 'analytics.html', context)
 
 
 #results needs to pull from db, where postpage uploads to db
