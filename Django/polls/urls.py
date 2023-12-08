@@ -11,7 +11,5 @@ urlpatterns = [
     path("results.html", views.results, name = "results"),
     path("analytics.html", views.analytics, name = "analytics"),
     path("forum.html", views.forum, name ="forum"),
-    path('download/<int:result_id>/', views.download_result_csv, name= 'download_result_csv'),
-    path('download/<int:result_id>/', views.download_result_plot, name= 'download_result_plot'),
 
 ]

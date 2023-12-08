@@ -39,21 +39,23 @@
             <ul class="list-none mx-auto my-12 flex flex-col sm:flex-col items-center gap-8 sm:items-center">
                 <li class="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">
                     <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                        Experiment: (Title Goes Here)
+                        Experiment: {{results.experimentTitle}}
                     </h3>
                     <p class="text-2xl text-center mt-2 text-teal-300 dark:text-teal-700">
-                        By: (Author Goes Here)
+                        By: {{results.authorName}}
                     </p>
                     <p class="text-1xl text-center mt-2 text-slate-500 dark:text-slate-400">
-                        Experiment notes and design
+                        Experiment notes and design:
+                        {{results.experimentNotes}}
                     </p>
                 </li>
                 <li class="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">
                     <h3 class="text-3xl text-center text-slate-900 dark:text-white">
                         Plots
+                        
                     </h3>
                     <p class="text-1xl text-center mt-2 text-slate-500 dark:text-slate-400">
-                        (Plots Go Here)
+                        <img src = {{results.plot.url}}/>
                     </p>
                 </li>
                 <li class="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">

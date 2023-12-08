@@ -11,21 +11,7 @@ from tabulate import tabulate
 def index(request):
     return render(request, 'index.html')
 
-def download_result_csv(request, result_id):
-    result = get_object_or_404(Result, pk=result_id)
-    file_path = result.csvFile.path
-    response = FileResponse(open(file_path, 'rb'))
-    response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = f'attachment; filename="{result.experimentTitle}"'
-    return response
 
-def download_result_plot(request, result_id):
-    result = get_object_or_404(Result, pk=result_id)
-    file_path = result.plot.path
-    response = FileResponse(open(file_path, 'rb'))
-    response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = f'attachment; filename="{result.experimentTitle}"'
-    return response
 
 def forum(request):
     _results = Result.objects.all()
@@ -112,12 +98,17 @@ def upload(request):
     return render(request, 'upload.html', context)
 
 def results(request):
-    if res.exName != '' :
-        context = {'exName': res.exName}
-        res.exName = ''
-        return render(request, 'results.html', context)
+    _results = Result.objects.get(pk = "testing again")
+
+
+    context={'results':_results}
+    return render(request, 'results.html',context)
     
-    return render(request, 'results.html')
+   #if res.exName != '' :
+    #    context = {'exName': res.exName}
+     #   return render(request, 'results.html', context)
+    
+    #return render(request, 'results.html') 
 
 class res:
     exName =''
