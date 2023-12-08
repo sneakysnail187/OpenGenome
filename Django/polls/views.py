@@ -79,6 +79,8 @@ class viewer:
     magTest2PngFilePath = ''
     magTest3PngFilePath = ''
     finalSetPngFilePath = ''
+    targetTxtPath = ''
+    pTxt = ''
 
 
 
@@ -142,6 +144,7 @@ def analytics(request):
             with open(tableName, 'w') as f:
                  f.write(tabulate(viewer.tabledata, headers = head))
                  f.close()
+            viewer.pTxt = tabulate(viewer.tabledata, headers=head)
         if request.POST.get("button_type")=='magTest':
             finString = viewer.csvToAnalyze.replace(" ", "_")
             viewer.numElements = int(request.POST.get('numElmentsInput'))
@@ -172,7 +175,7 @@ def analytics(request):
              with open(interesttableName, 'w') as fi:
                  fi.write(tabulate(viewer.interesttable, headers=interesthead))
                  fi.close()
-
+             viewer.targetTxtPath = tabulate(viewer.interesttable, headers=interesthead)
 #
 #
 #
@@ -181,7 +184,9 @@ def analytics(request):
                "magTest1" : viewer.magTest1PngFilePath,
                "magTest2" : viewer.magTest2PngFilePath,
                "magTest3" : viewer.magTest3PngFilePath,
-               "finalSet": viewer.finalSetPngFilePath}
+               "finalSet": viewer.finalSetPngFilePath,
+               "tergettedTable": viewer.targetTxtPath,
+               "PTable": viewer.pTxt}
     #print(viewer.csvToAnalyze)
     return render(request, 'analytics.html', context)
 

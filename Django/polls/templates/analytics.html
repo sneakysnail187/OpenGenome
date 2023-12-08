@@ -92,6 +92,20 @@
                     <img class="felx justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{pTest}}" alt="P-Test Plot" id="pTestImage">
                     </div>
                     <div class="text-center mt-6">
+                    <div
+                    data-te-perfect-scrollbar-init
+                    class="relative h-[400px] w-[600px] overflow-hidden">
+                        <textarea
+                            name="MagTest"
+                            class="relative m-0 block w-full min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-teal-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-slate-400 dark:focus:border-primary"
+                            placeholder="Magnitude Test Table will go here"
+                            aria-label="Target-Genes"
+                            aria-describedby="addon-wrapping"
+                            readonly
+                        >
+                        {{PTable}}
+                        </textarea>
+                    </div>
                         <button id="targetGeneListButton" name="button_type" value="pTest" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
                             Run P-Test
                         </button>
@@ -150,6 +164,7 @@
                     <div class="flex justify-center mt-6" id="magTest3">
                     <img class="flex justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{magTest3}}" alt="magTest Plot3" id="magTest3Image">
                     </div>
+                    
                     <div class="text-center mt-6">
                         <button id="greatestMagnituedButton" name="button_type" value = "magTest" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
                             Run Greatest Magnitudes Function
@@ -187,8 +202,9 @@
                             placeholder="Magnitude Test Table will go here"
                             aria-label="Target-Genes"
                             aria-describedby="addon-wrapping"
+                            readonly
                         >
-                        
+                        {{tergettedTable}}
                         </textarea>
                     </div>
                     
