@@ -74,6 +74,12 @@ class viewer:
     numElements = 0
     targetGenesString = ''
     GenesList = []
+    pTestPngFilePath = ''
+    magTest1PngFilePath = ''
+    magTest2PngFilePath = ''
+    magTest3PngFilePath = ''
+    finalSetPngFilePath = ''
+
 
 
 def upload(request):
@@ -129,9 +135,10 @@ def analytics(request):
             finString = viewer.csvToAnalyze.replace(" ", "_")
             pngString = finString.replace(".csv",".png")
             pngPath = "./uploads/Plots/" + pngString
+            viewer.pTestPngFilePath = pngString
             viewer.FilteredIDs, viewer.FlogFCs, viewer.FGeneSymbols, viewer.FGeneTitles, viewer.tabledata = g.plotPFilteredlogs(viewer.pVal,viewer.IDList,viewer.PList,viewer.logFCs,viewer.GeneSymbols,viewer.GeneTitles, pngPath)
             head = ["ID","logFC","Gene Symbols","Gene Titles"]
-            tableName = "uploads/Tables/" + finString.replace(".csv", "Test.txt")
+            tableName = "./uploads/Tables/" + finString.replace(".csv", "Test.txt")
             with open(tableName, 'w') as f:
                  f.write(tabulate(viewer.tabledata, headers = head))
                  f.close()
@@ -141,23 +148,27 @@ def analytics(request):
             if request.POST.get('radio') == '1':
                 notsaveDestination=finString.replace(".csv","MagTest1.png")
                 saveDestination = "./uploads/Plots/"+ notsaveDestination
+                viewer.magTest1PngFilePath = saveDestination
                 g.logMag(1, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
             if request.POST.get("radio") == "2":
                 notsaveDestination=finString.replace(".csv","MagTest2.png")
                 saveDestination = "./uploads/Plots/"+ notsaveDestination
+                viewer.magTest2PngFilePath = saveDestination
                 g.logMag(2, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
             if request.POST.get("radio") == "3":
                 notsaveDestination=finString.replace(".csv","MagTest3.png")
                 saveDestination = "./uploads/Plots/"+ notsaveDestination
+                viewer.magTest3PngFilePath = saveDestination
                 g.logMag(3, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
         if request.POST.get("button_type") == 'targetGene':
              finString = viewer.csvToAnalyze.replace(" ", "_")
-             savePlace = finString.replace(".csv","FinalSet.png")
+             savePlace = "./uploads/Plots/" + finString.replace(".csv","FinalSet.png")
+             viewer.finalSetPngFilePath = savePlace
              viewer.targetGenesString = request.POST.get('targetGenes')
              viewer.GenesList = list(viewer.targetGenesString.split(", "))
              viewer.interesttable = g.shortCSV(viewer.GenesList,viewer.IDList,viewer.GeneSymbols,viewer.logFCs,viewer.GeneTitles,viewer.AdjP,viewer.PList,viewer.tValues,viewer.BValues,savePlace)
              interesthead = ["ID","Adj.P.Val","P.Value","t","B","logFC","Gene.Symbol","Gene.Title"]
-             interesttableName = "uploads/Tables/" + finString.replace(".csv", "Test2.txt")
+             interesttableName = "./uploads/Tables/" + finString.replace(".csv", "Test2.txt")
              with open(interesttableName, 'w') as fi:
                  fi.write(tabulate(viewer.interesttable, headers=interesthead))
                  fi.close()
@@ -165,7 +176,12 @@ def analytics(request):
 #
 #
 #
-    context = {"csvName" : viewer.csvToAnalyze}
+    context = {"csvName" : viewer.csvToAnalyze,
+               "pTest" : viewer.pTestPngFilePath,
+               "magTest1" : viewer.magTest1PngFilePath,
+               "magTest2" : viewer.magTest2PngFilePath,
+               "magTest3" : viewer.magTest3PngFilePath,
+               "finalSet": viewer.finalSetPngFilePath}
     #print(viewer.csvToAnalyze)
     return render(request, 'analytics.html', context)
 
