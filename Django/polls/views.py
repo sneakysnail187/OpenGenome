@@ -147,23 +147,23 @@ def analytics(request):
             viewer.numElements = int(request.POST.get('numElmentsInput'))
             if request.POST.get('radio') == '1':
                 notsaveDestination=finString.replace(".csv","MagTest1.png")
+                viewer.magTest1PngFilePath = notsaveDestination
                 saveDestination = "./uploads/Plots/"+ notsaveDestination
-                viewer.magTest1PngFilePath = saveDestination
                 g.logMag(1, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
             if request.POST.get("radio") == "2":
                 notsaveDestination=finString.replace(".csv","MagTest2.png")
+                viewer.magTest2PngFilePath = notsaveDestination
                 saveDestination = "./uploads/Plots/"+ notsaveDestination
-                viewer.magTest2PngFilePath = saveDestination
                 g.logMag(2, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
             if request.POST.get("radio") == "3":
                 notsaveDestination=finString.replace(".csv","MagTest3.png")
+                viewer.magTest3PngFilePath = notsaveDestination
                 saveDestination = "./uploads/Plots/"+ notsaveDestination
-                viewer.magTest3PngFilePath = saveDestination
                 g.logMag(3, viewer.numElements, viewer.FlogFCs, viewer.tabledata, saveDestination)
         if request.POST.get("button_type") == 'targetGene':
              finString = viewer.csvToAnalyze.replace(" ", "_")
+             viewer.finalSetPngFilePath = finString.replace(".csv","FinalSet.png")
              savePlace = "./uploads/Plots/" + finString.replace(".csv","FinalSet.png")
-             viewer.finalSetPngFilePath = savePlace
              viewer.targetGenesString = request.POST.get('targetGenes')
              viewer.GenesList = list(viewer.targetGenesString.split(", "))
              viewer.interesttable = g.shortCSV(viewer.GenesList,viewer.IDList,viewer.GeneSymbols,viewer.logFCs,viewer.GeneTitles,viewer.AdjP,viewer.PList,viewer.tValues,viewer.BValues,savePlace)

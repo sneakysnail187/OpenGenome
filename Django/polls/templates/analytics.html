@@ -88,15 +88,8 @@
 
                     </div>
 
-                    <div class="flex justify-center mt-6" id="pTest" hidden>
-                    <img class="w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{pTest}}" alt="P-Test Plot" id="pTestImage" hidden>
-                    <script>
-                        var pTest = "{{pTest}}";
-                        if (pTest != "") {
-                            document.getElementById("pTest").style.display = "block";
-                            document.getElementById("pTestImage").style.display = "block";
-                        }
-                    </script>
+                    <div class="flex justify-center mt-6" id="pTest">
+                    <img class="felx justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{pTest}}" alt="P-Test Plot" id="pTestImage">
                     </div>
                     <div class="text-center mt-6">
                         <button id="targetGeneListButton" name="button_type" value="pTest" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
@@ -148,6 +141,15 @@
 
                         </div>
                     </div>    
+                    <div class="flex justify-center mt-6" id="magTest1">
+                    <img class="flex justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{magTest1}}" alt="magTest Plot1" id="magTest1Image">
+                    </div>
+                    <div class="flex justify-center mt-6" id="magTest2">
+                    <img class="flex justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{magTest2}}" alt="magTest Plot2" id="magTest2Image">
+                    </div>
+                    <div class="flex justify-center mt-6" id="magTest3">
+                    <img class="flex justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{magTest3}}" alt="magTest Plot3" id="magTest3Image">
+                    </div>
                     <div class="text-center mt-6">
                         <button id="greatestMagnituedButton" name="button_type" value = "magTest" type="submit" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
                             Run Greatest Magnitudes Function
@@ -171,6 +173,10 @@
                                 aria-label="Target-Genes"
                                 aria-describedby="addon-wrapping" />
                         </div>
+                    </div>
+
+                    <div class="flex justify-center mt-6" id="finalSet">
+                    <img class="flex justify-center w-2/3 sm:w-2/3 bg-teal-300 dark:bg-teal-700" src="{% get_media_prefix %}/Plots/{{finalSet}}" alt="finalSet Plot" id="finalSetImage">
                     </div>
                     
                     <div class="text-center mt-6">
