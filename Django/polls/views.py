@@ -112,7 +112,16 @@ def upload(request):
     return render(request, 'upload.html', context)
 
 def results(request):
+    if res.exName != '' :
+        context = {'exName': res.exName}
+        res.exName = ''
+        return render(request, 'results.html', context)
+    
     return render(request, 'results.html')
+
+class res:
+    exName =''
+
 
 def analytics(request):
     #fileNames = UserCSV.objects.all().distinct()
