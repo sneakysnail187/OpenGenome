@@ -102,6 +102,7 @@ def upload(request):
 
 def results(request):
 
+    _results = Result.objects.get(pk = "asd")
     context={'results':_results}
     return render(request, 'results.html',context)
         
