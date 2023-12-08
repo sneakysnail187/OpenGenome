@@ -14,6 +14,9 @@ def index(request):
 
 
 def forum(request):
+    if request.method == "POST" :
+        res.exName = request.POST["button_type"]
+
     _results = Result.objects.all()
 
     context={'results':_results}
@@ -98,12 +101,10 @@ def upload(request):
     return render(request, 'upload.html', context)
 
 def results(request):
-    _results = Result.objects.get(pk = "testing again")
-
 
     context={'results':_results}
     return render(request, 'results.html',context)
-    
+        
    #if res.exName != '' :
     #    context = {'exName': res.exName}
      #   return render(request, 'results.html', context)

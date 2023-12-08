@@ -51,24 +51,15 @@
                     User Posts
                 </h2>
                 <div class="w-96 mx-auto">
-                    <form action = '' method="POST" enctype = "multipart/form-data" name = "result"> {% csrf_token %}
+                 
                         {%for Result in results %}
-                        <button  value= {{Result.experimentTitle}}
-                            class="block w-full cursor-pointer rounded-lg p-4 border border-slate-300 transition duration-500 bg-teal-700 text-slate-300 hover:bg-teal-100 hover:text-neutral-500 focus:bg-neutral-700 focus:text-neutral-500 focus:ring-0 dark:hover:bg-teal-700 dark:hover:text-neutral-200 dark:focus:bg-teal-700 dark:focus:text-neutral-200 my-2"> 
-                            {{Result.experimentTitle}}
-                        </button> 
+                        
+                        <a  value= {{Result.experimentTitle}}
+                        href="results.html"  
+                        class="block w-full cursor-pointer rounded-lg p-4 border border-slate-300 transition duration-500 bg-teal-700 text-slate-300 hover:bg-teal-100 hover:text-neutral-500 focus:bg-neutral-700 focus:text-neutral-500 focus:ring-0 dark:hover:bg-teal-700 dark:hover:text-neutral-200 dark:focus:bg-teal-700 dark:focus:text-neutral-200 my-2"> 
+                        </a> 
                         {%endfor%}
-                        <script>
-                            // take selected button and store 
-                        </script>
-                        <div class="text-center mt-6">
-                            <button name="button_type" value="analyze" id="analyzeButton" type="submit"  class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded">
-                                Load Data
-                            </button>
-                            <button formaction="analytics.html" id="refreshDataButton" type="analyze" class="bg-teal-300 hover:bg-teal-500 dark:bg-teal-700 text-white font-bold py-2 px-4 mx-4 rounded" py-click="refreshList">
-                                Go to Analytics
-                            </button>
-                    </form>
+                    
                     
                 </div>
             </section>
